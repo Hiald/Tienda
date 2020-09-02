@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Vendedor inicio";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}   
+<br />
+<br />
+<br />
+<!-- Page Content-->
+<div class="container py-4 py-lg-5 my-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-0 box-shadow">
+                <div class="card-body">
+                    <h2 class="h4 mb-1">Inicia sesión</h2>
+                    <!--<div class="py-3">
+                      <h3 class="d-inline-block align-middle font-size-base font-weight-semibold mb-2 mr-2">With social account:</h3>
+                      <div class="d-inline-block align-middle"><a class="social-btn sb-google mr-2 mb-2" href="#" data-toggle="tooltip" title="Sign in with Google"><i class="czi-google"></i></a><a class="social-btn sb-facebook mr-2 mb-2" href="#" data-toggle="tooltip" title="Sign in with Facebook"><i class="czi-facebook"></i></a><a class="social-btn sb-twitter mr-2 mb-2" href="#" data-toggle="tooltip" title="Sign in with Twitter"><i class="czi-twitter"></i></a></div>
+                    </div> -->
+                    <hr>
+                    <h3 class="font-size-base pt-4 pb-2">Gestiona tu tienda</h3>
+                    <form class="needs-validation" novalidate id="frm1">
+                        <div class="input-group-overlay form-group">
+                            <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-mail"></i></span></div>
+                            <input class="form-control prepended-form-control" type="email" placeholder="micorreo@ejemplo.com" required id="correois" maxlength="50">
+                        </div>
+                        <div class="input-group-overlay form-group">
+                            <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-locked"></i></span></div>
+                            <div class="password-toggle">
+                                <input class="form-control prepended-form-control" type="password" placeholder="Contraseña" required id="claveis" maxlength="15">
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" checked id="remember_me">
+                                <label class="custom-control-label" for="remember_me">Recordar</label>
+                            </div><a class="nav-link-inline font-size-sm">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <hr class="mt-4">
+                        <div class="text-right pt-4">
+                            <button class="btn btn-primary" id="btnInicio"><i class="czi-sign-in mr-2 ml-n21"></i>Iniciar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pt-4 mt-3 mt-md-0">
+            <h2 class="h4 mb-3">¿No tienes cuenta? Regístrate</h2>
+            <p class="font-size-sm text-muted mb-4">Registrarte con una cuenta te tomará menos de un minuto, ¡pruébalo ahora!</p>
+            <form class="needs-validation" novalidate id="frm2">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-fn">Nombre</label>
+                            <input class="form-control" type="text" required id="reg-fn" maxlength="50">
+                            <div class="invalid-feedback">Por favor ingresa tu nombre!</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-ln">Apellido</label>
+                            <input class="form-control" type="text" required id="reg-ln" maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su apellido!</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-email">Correo electrónico</label>
+                            <input class="form-control" type="email" required id="reg-email" maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su correo electrónico!</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-phone">Celular</label>
+                            <input class="form-control" type="text" required id="reg-phone" maxlength="9">
+                            <div class="invalid-feedback">Por favor ingrese su celular!</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-password">Contraseña</label>
+                            <input class="form-control" type="password" required id="reg-password" maxlength="15">
+                            <div class="invalid-feedback">Por favor ingrese su contraseña</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg-password-confirm">Repetir contraseña</label>
+                            <input class="form-control" type="password" required id="reg-password-confirm" maxlength="15">
+                            <div class="invalid-feedback">Las claves no coinciden</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary" id="btnNuevo"><i class="czi-user mr-2 ml-n1"></i>Regístrate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/src/vendedor/index.js"></script>
+    <script>
+        $('#frm1').submit(false);
+        $('#frm2').submit(false);
+
+        function fnRouteMain() {
+             location.replace('@Url.Action("principal", "vendedor")');
+        }        
+
+    </script>
+}

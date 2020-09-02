@@ -1,0 +1,1303 @@
+﻿@{
+    ViewBag.Title = "Crivant";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muomarket | Tu tienda virtual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/src/index/bootstrap.min.css">
+    <link href="~/Content/img/index/logoplantilla.png" rel="icon" />
+    @* borrarhttps://fonts.googleapis.com/css?family=Roboto:400%7CPoppins:700%2C400 *@
+    <link href="~/Content/src/index/cssfont.css" rel="stylesheet" property="stylesheet" media="all" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/src/index/animate.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/img/index/tienda.png">
+    <style type="text/css">
+        /*.jumbotron {
+                background-color: rgb(43, 43, 43);
+                top: 0;
+                left: 0;
+                min-width: 100%;
+                min-height: 100vh;
+                border-radius: 0 !important ;
+                }*/
+
+        .carouselimg {
+            position: absolute;
+            left: 45%;
+        }
+
+        .header {
+            background-color: rgb(43, 43, 43);
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+            .header .navbar {
+                background-color: transparent !important;
+            }
+
+        .fuente {
+            font-family: "Poppins";
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 35px;
+            padding-left: 40px;
+            padding-right: 40px;
+            line-height: 35px;
+            color: #ffffff;
+            background-color: #e22450;
+        }
+
+        .btniniciar {
+            font-family: "Poppins";
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 35px;
+            padding-left: 70px;
+            padding-right: 60px;
+            line-height: 35px;
+            color: #ffffff;
+            background-color: #e22450;
+        }
+
+        .titulo {
+            font-family: "Poppins";
+            font-weight: 600;
+            font-size: 25px;
+            padding-left: 10px;
+            padding-right: 40px;
+            line-height: 40px;
+            color: #fff;
+            text-decoration: none !important;
+        }
+
+        .titulo2 {
+            font-family: "Poppins";
+            font-weight: 600;
+            font-size: 45px;
+            padding-left: 40px;
+            padding-right: 40px;
+            line-height: 40px;
+            color: #fff;
+            text-decoration: none !important;
+        }
+
+        .texto {
+            font-family: "Poppins";
+            font-weight: 600;
+            font-size: 16px;
+            padding-left: 40px;
+            padding-right: 40px;
+            line-height: 40px;
+            color: #fff !important;
+        }
+
+        @@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .modal-lg {
+                max-width: 80%;
+            }
+
+            .carouselimg {
+                position: absolute;
+                left: 45%;
+            }
+
+            .fuente {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-left: 40px;
+                padding-right: 40px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+                margin-left: 20%;
+            }
+
+            .btniniciar {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-left: 60px;
+                padding-right: 60px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+            }
+        }
+
+        @@media (min-width: 481px) and (max-width: 767px) {
+            .carouselimg {
+                position: absolute;
+                left: 45%;
+            }
+
+            .fuente {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-left: 40px;
+                padding-right: 40px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+                margin-left: 20%;
+            }
+
+            .btniniciar {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-left: 60px;
+                padding-right: 60px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+            }
+        }
+
+        @@media (min-width: 320px) and (max-width: 480px) {
+            .carouselimg {
+                position: absolute;
+                left: 31%;
+            }
+
+            .embed-responsive {
+                position: relative;
+                display: block;
+                width: 100%;
+                padding: 0;
+                overflow: hidden;
+                height: 106% !important;
+            }
+
+            .modal-content {
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                width: 100%;
+                pointer-events: auto;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid rgba(0,0,0,.2);
+                border-radius: .3rem;
+                outline: 0;
+                height: 600px !important;
+            }
+
+            .fuente {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-right: 40px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+            }
+
+            .btniniciar {
+                font-family: "Poppins";
+                font-weight: 700;
+                font-size: 14px;
+                border-radius: 35px;
+                padding-left: 60px;
+                padding-right: 60px;
+                line-height: 35px;
+                color: #ffffff;
+                background-color: #e22450;
+            }
+        }
+
+
+        /* IMAGEN OVERLAY */
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 92%;
+            margin-left: 15px;
+            opacity: 0;
+            transition: .3s ease;
+            background-color: gray;
+            background: rgba(199,34,73,0.75);
+            cursor: pointer;
+        }
+
+        .image:hover .overlay {
+            opacity: 1;
+        }
+
+        .icon {
+            color: white;
+            font-size: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+
+    <style>
+        .wrimagecard {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            position: relative;
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .wrimagecard .fa {
+                position: relative;
+                font-size: 70px;
+            }
+
+        .wrimagecard-topimage_header {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        a.wrimagecard:hover, .wrimagecard-topimage:hover {
+            box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+        }
+
+        .wrimagecard-topimage a {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .wrimagecard-topimage_title {
+            padding: 20px 24px;
+            height: 100px;
+            padding-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .wrimagecard-topimage a {
+            border-bottom: none;
+            text-decoration: none;
+            color: #525c65;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body style="font-family: 'Poppins'; overflow-x:hidden" class="animated fadeIn">
+    <header class="header" style="background-image: url('../../Content/img/index/Ellipse-974-copy-4.png');background-position: center;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbarTop">
+            @*<img src="~/Content/img/index/logoplantilla.png" style="width:5%;height:5%;" class="img img-fluid" alt="Logo" />*@
+            <a class="navbar titulo" href="~/Views/index/Index.cshtml" id="tx1">Muomarket</a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="mx-auto order-0">
+                    <ul class="navbar-nav mr-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link texto" href="~/Views/index/Index.cshtml" id="tx2">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link texto" href="#seccaracteristica" id="tx3">Qué Ofrecemos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link texto" href="#secComoFunciona" id="tx5">Cómo funciona</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link texto" href="#secContactoDato" id="tx6">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                    <button class="btn fuente" id="btnContactar" data-toggle="modal" data-target="#mventa">CONTACTAR</button>
+
+                </div>
+            </div>
+        </nav>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alertaRegistro" style="display: none;">
+            <strong>Muchas gracias!</strong> Nos pondremos en contacto contigo lo más pronto posible
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <h1 class="page-header-title text-center titulo2" style="font-size: 44px">Aumenta tus ventas</h1>
+                    <p class="page-header-text mb-5 titulo2 text-center" style="color: #e22450">Tienda virtual</p>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btniniciar shadow-lg" data-toggle="modal" data-target="#mventa">Contactar&nbsp;&nbsp;</button>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btniniciar mt-2" id="btnDemo">¡Ver Demo!</button>
+                    </div>
+                </div>
+                <div class="col-md-7 text-center col-sm-3 animated fadeInRight" id="imgResponsive">
+                    <br>
+                    <img src="~/Content/img/index/imglaptop.png" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="secAcercaDe" style="background-image: url('../../Content/img/index/Ellipse-974-copy-22-2.jpg');
+    		background-size: cover;">
+        <div class="container">
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="h3 text-secondary">Aumenta tus ventas</h3>
+                </div>
+                <div class="col-md-12 text-center">
+                    <h1 class="h1 font-weight-bold" style="color: #e22450">Llega a más clientes o inicia tu proyecto</h1>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h5 class="h5 text-dark text-center">Te presentamos A MuoMarket, una tienda virtual lista para ir de la mano con tu negocio o emprendimiento</h5>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4 col-xs-12 image">
+                    <img src="~/Content/img/index/acercade3.png" class="img-fluid rounded" alt="image1">
+                    <div class="overlay" onclick="AbrirModal(3)">
+                        <svg style="color: #fff" class="icon bi bi-plus-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 image">
+                    <img src="~/Content/img/index/acercade2.png" class="img-fluid rounded" alt="image1">
+                    <div class="overlay" onclick="AbrirModal(2)">
+                        <svg style="color: #fff" class="icon bi bi-plus-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 image">
+                    <img src="~/Content/img/index/acercade1.png" class="img-fluid rounded" alt="image1">
+                    <div class="overlay" onclick="AbrirModal(1)">
+                        <svg style="color: #fff" class="icon bi bi-plus-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+
+        </div>
+    </div>
+
+    <div id="secComoFunciona" class="container-fluid" style="background-image: url('../../Content/img/index/Ellipse-974-copy-22-2.jpg');
+    		background-size: cover;padding-top:8%;padding-bottom:8%;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="h3 font-weight-bold" style="color: #e22450">¿Cómo funciona?</h3>
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="wrimagecard wrimagecard-topimage">
+                    <a>
+                        <div class="wrimagecard-topimage_header" style="background-color:#e22450">
+                            <center><i class="fa fa-address-card" style="color:#fff"></i></center>
+                        </div>
+                        <div class="wrimagecard-topimage_title">
+                            <h5 class="h5">1. Déjanos tus datos, y nos pondremos en contacto contigo</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="wrimagecard wrimagecard-topimage">
+                    <a>
+                        <div class="wrimagecard-topimage_header" style="background-color:#e22450">
+                            <center><i class="fa fa-envelope" style="color:#fff"></i></center>
+                        </div>
+                        <div class="wrimagecard-topimage_title">
+                            <h5 class="h5">2. Te enviaremos un acceso GRATIS por un mes a tu correo electrónico o celular</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="wrimagecard wrimagecard-topimage">
+                    <a>
+                        <div class="wrimagecard-topimage_header" style="background-color:#e22450">
+                            <center><i class="fa fa-check-circle" style="color:#fff"></i></center>
+                        </div>
+                        <div class="wrimagecard-topimage_title">
+                            <h5>3. ¡Y listo! Disfruta de tu mes gratuito llegando más a tus clientes potenciales</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <div class="container" id="seccaracteristica">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-7 text-center">
+                <img class="img-fluid mb-3" src="~/Content/img/index/caracteristicas.png" width="80%">
+            </div>
+            <div class="col-md-5">
+                <div class="col-md-12 text-center">
+                    <h3 class="h3 text-secondary">¿Qué ofrecemos?</h3>
+                    <h1 class="h1 font-weight-bold" style="color: #e22450">Características</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 text-left">
+                        <svg style="color: #e22450" class="bi bi-gift" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 6v8.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V6h1v8.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V6h1zm8-5a1.5 1.5 0 0 0-1.5 1.5c0 .098.033.16.12.227.103.081.272.15.49.2A3.44 3.44 0 0 0 9.96 3h.015L10 2.999l.025.002h.014A2.569 2.569 0 0 0 10.293 3c.17-.006.387-.026.598-.073.217-.048.386-.118.49-.199.086-.066.119-.13.119-.227A1.5 1.5 0 0 0 10 1zm0 3h-.006a3.535 3.535 0 0 1-.326 0 4.435 4.435 0 0 1-.777-.097c-.283-.063-.614-.175-.885-.385A1.255 1.255 0 0 1 7.5 2.5a2.5 2.5 0 0 1 5 0c0 .454-.217.793-.506 1.017-.27.21-.602.322-.885.385a4.434 4.434 0 0 1-1.104.099H10z" />
+                            <path fill-rule="evenodd" d="M6 1a1.5 1.5 0 0 0-1.5 1.5c0 .098.033.16.12.227.103.081.272.15.49.2A3.44 3.44 0 0 0 5.96 3h.015L6 2.999l.025.002h.014l.053.001a3.869 3.869 0 0 0 .799-.076c.217-.048.386-.118.49-.199.086-.066.119-.13.119-.227A1.5 1.5 0 0 0 6 1zm0 3h-.006a3.535 3.535 0 0 1-.326 0 4.435 4.435 0 0 1-.777-.097c-.283-.063-.614-.175-.885-.385A1.255 1.255 0 0 1 3.5 2.5a2.5 2.5 0 0 1 5 0c0 .454-.217.793-.506 1.017-.27.21-.602.322-.885.385a4.435 4.435 0 0 1-1.103.099H6zm1.5 12V6h1v10h-1z" />
+                            <path fill-rule="evenodd" d="M15 4H1v1h14V4zM1 3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z" />
+                        </svg>
+
+                    </div>
+                    <div class="col-md-10 col-sm-9 text-left">
+                        ¡MuoMarket es libre de comisiones, no pagues de más! Y te damos un mes GRATIS
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 text-left">
+                        <svg style="color: #e22450" class="bi bi-cart-check" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.354 5.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg>
+                    </div>
+                    <div class="col-md-10 col-sm-9 text-left">
+                        Distintos tipos de pago, contra entrega, yape, tarjetas
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 text-left">
+                        <svg style="color: #e22450" class="bi bi-gear-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z" />
+                        </svg>
+                    </div>
+                    <div class="col-md-10 col-sm-9 text-left">
+                        Plataforma gestionable con categorías, productos y estadísticas de ventas
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 text-left">
+                        <svg style="color: #e22450" class="bi bi-truck" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5v7h-1v-7a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5v1A1.5 1.5 0 0 1 0 10.5v-7zM4.5 11h6v1h-6v-1z" />
+                            <path fill-rule="evenodd" d="M11 5h2.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5h-1v-1h1a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4.5h-1V5zm-8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                            <path fill-rule="evenodd" d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                        </svg>
+                    </div>
+                    <div class="col-md-10 col-sm-9 text-left">
+                        Sistema de seguimiento de envios incluido, ofrece un tiempo de entrega para tus envíos y mantén al tanto de toda actividad a tus clientes
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="h3 text-secondary">Brinda a tus clientes una mejor experiencia</h3>
+                <h1 class="h1 font-weight-bold" style="color: #e22450">Aumenta tus ventas</h1>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h4"> Crecimiento en internet</h4>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h4"> Aumento de Ventas en redes sociales</h4>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="h4"> Aumento de mercado potencial</h4>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <h4 class="h4"> Más ventas en línea</h4>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 text-center">
+                <img class="img-fluid" src="~/Content/img/index/clientes.png" style="border-radius: 35px;height:95%;width:70%;">
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+
+    </div>
+
+    <div class="container">
+        <br />
+        <br />
+        <div class="row text-center">
+            <div class="col-md-12 mb-5 text-center">
+                <h3 class="h3 text-secondary">¿Tienes alguna duda?</h3>
+                <h1 class="h1 font-weight-bold" style="color: #e22450">Preguntas frecuentes</h1>
+            </div>
+        </div>
+        <section class="bg-white">
+            <div class="container pt-8 pt-md-11">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <!-- Item -->
+                        <div class="d-flex">
+                            <div class="badge badge-rounded-circle badge-white">
+                                <svg style="color: #e22450" class="bi bi-chat-quote-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z" />
+                                </svg>
+                            </div>
+                            <div class="ml-2">
+                                <h4 class="text-dark">
+                                    ¿Dónde obtengo una demo en línea?
+                                </h4>
+                                <p class="text-muted mb-6 mb-md-8">
+                                    Puedes dejarnos tus datos debajo y nos pondremos en contacto contigo lo más pronto posible
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="badge badge-rounded-circle badge-white">
+                                <svg style="color: #e22450" class="bi bi-chat-quote-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z" />
+                                </svg>
+                            </div>
+                            <div class="ml-2">
+                                <h4 class="text-dark">
+                                    ¿Qué tipos de productos puedo vender en la tienda virtual?
+                                </h4>
+                                <p class="text-muted mb-6 mb-md-0">
+                                    Puedes vender tipos como comida por delivery, venta de ropa, calzado, y mucho más
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex">
+                            <div class="badge badge-rounded-circle badge-white">
+                                <svg style="color: #e22450" class="bi bi-chat-quote-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z" />
+                                </svg>
+                            </div>
+                            <div class="ml-2">
+                                <h4 class="text-dark">
+                                    ¿Cómo realizo mi pago?
+                                </h4>
+                                <p class="text-muted mb-6 mb-md-8">
+                                    Puedes realizar el pago una vez coordinando los montos por transferencia bancaria o yape. Recuerda que el mes gratuito solo es durante Junio. ¡Aprovechalo! :)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="badge badge-rounded-circle badge-white">
+                                <svg style="color: #e22450" class="bi bi-chat-quote-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 0 1-.612.01.405.405 0 0 1-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 0 1-.613.01.405.405 0 0 1-.011-.59c.42-.416.672-.831.81-1.22z" />
+                                </svg>
+                            </div>
+                            <div class="ml-2">
+                                <h4 class="text-dark">
+                                    Estoy empezando a empreder ¿Cómo me podrían ayudar?
+                                </h4>
+                                <p class="text-muted mb-6 mb-md-0">
+                                    Si estas iniciando en el mundo del emprendimiento, tenemos paquete de marketing en redes sociales para que llegues más rápido a tus clientes potenciales
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> <!-- / .row -->
+            </div> <!-- / .container -->
+        </section>
+        <br />
+        <br />
+    </div>
+
+    <div id="secContactoDato" style="background-image: url('../../Content/img/index/Ellipse-974-copy-22-2.jpg');
+    		background-size: cover;">
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="h3 text-dark">¿Estas listo? Contáctanos</h3>
+                    <h1 class="h1" style="color: #e22450">Y déjanos ayudarte con tu idea</h1>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row text-center">
+                <div class="col-md-6 text-left">
+                    <div class="form-group">
+                        <label for="txnombrec">Nombre</label>
+                        <input type="text" class="form-control" id="txnombrec" placeholder="Ingrese su nombre" maxlength="125">
+                    </div>
+                    <div class="form-group">
+                        <label for="txcelular">Celular (opcional)</label>
+                        <input type="text" class="form-control" id="txcelular" placeholder="Nro de celular" maxlength="9">
+                    </div>
+                </div>
+                <div class="col-md-6 text-left">
+                    <div class="form-group">
+                        <label for="txcorreoVenta">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="txcorreoVenta" placeholder="" maxlength="125">
+                    </div>
+                    <div class="form-group">
+                        <label for="slcde">Distrito</label>
+                        <select class="form-control" id="slcde">
+                            <option value="0" selected="selected">Seleccione un Distrito</option>
+                            <option value="1">ATE</option>
+                            <option value="2">BARRANCO</option>
+                            <option value="3">CERCADO DE LIMA</option>
+                            <option value="4">CHORRILLOS</option>
+                            <option value="5">CIENEGUILLA</option>
+                            <option value="6">COMAS</option>
+                            <option value="7">EL AGUSTINO</option>
+                            <option value="8">INDEPENDENCIA</option>
+                            <option value="9">JESUS MARIA</option>
+                            <option value="10">LA MOLINA</option>
+                            <option value="11">LA VICTORIA</option>
+                            <option value="12">LINCE</option>
+                            <option value="13">LOS OLIVOS</option>
+                            <option value="14">LURIN</option>
+                            <option value="15">MAGDALENA DEL MAR</option>
+                            <option value="16">PUEBLO LIBRE</option>
+                            <option value="17">MIRAFLORES</option>
+                            <option value="18">RIMAC</option>
+                            <option value="19">SAN BORJA</option>
+                            <option value="20">SAN ISIDRO</option>
+                            <option value="21">SAN JUAN DE LURIGANCHO</option>
+                            <option value="22">SAN JUAN DE MIRAFLORES</option>
+                            <option value="23">SAN LUIS</option>
+                            <option value="24">SAN MARTIN DE PORRES</option>
+                            <option value="25">SAN MIGUEL</option>
+                            <option value="26">SANTA ANITA</option>
+                            <option value="27">SANTIAGO DE SURCO</option>
+                            <option value="28">SURQUILLO</option>
+                            <option value="29">VILLA EL SALVADOR</option>
+                            <option value="30">VILLA MARIA DEL TRIUNFO</option>
+                            <option value="31">ANCON</option>
+                            <option value="32">CARABAYLLO</option>
+                            <option value="33">CHACLACAYO</option>
+                            <option value="34">PACHACAMAC</option>
+                            <option value="35">PUCUSANA</option>
+                            <option value="36">PUENTE PIEDRA</option>
+                            <option value="37">PUNTA HERMOSA</option>
+                            <option value="38">PUNTA NEGRA</option>
+                            <option value="39">SAN BARTOLO</option>
+                            <option value="40">SANTA MARIA DEL MAR</option>
+                            <option value="41">SANTA ROSA</option>
+                            <option value="42">CHOSICA (LURIGANCHO)</option>
+                            <option value="43">BREÑA</option>
+                            <option value="44">FUERA DE LIMA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-success ml-3 mr-4" onclick="enviarVenta2()">Enviar</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+    <div style="background-color: #2ba540;" id="secredes">
+        <div class="container-fluid" style="background-color: #2ba540;top:10%;left: 50%; ">
+            <br>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#" class="fa fa-facebook pl-3 pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                    <a href="#" class="fa fa-twitter pl-3 pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                    <a href="#" class="fa fa-youtube pl-3 pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                    <a href="#" class="fa fa-instagram pl-3 pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <div style="background-color: #363636" id="seccontacto">
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="h1 text-light text-left">Crivant</h1>
+                    <h5 class="h5 text-secondary text-left">Crea, Realiza, Innova</h5>
+                    <br>
+                    <a href="#" class="fa fa-cc-visa pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                    <a href="#" class="fa fa-cc-mastercard pr-3" style="font-size: 30px;color: #fff;text-decoration: none;"></a>
+                    <br>
+                    <br>
+                    <div class="row pl-3">
+                        <a href="#" class="fa fa-lock pr-3" style="font-size: 20px;color: #fff;text-decoration: none;"></a>
+                        <p class="text-light">Pagos seguros en línea</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="h5 text-light text-left">Mejor Experiencia</h5>
+                    <br>
+                    <p class="text-secondary" style="cursor: pointer;">FAQ</p>
+                    <p class="text-secondary" style="cursor: pointer;">Envíos</p>
+                    <p class="text-secondary" style="cursor: pointer;">Reembolsos</p>
+                    <p class="text-secondary" style="cursor: pointer;">Cuidado por Covid-19</p>
+                    <p class="text-secondary" style="cursor: pointer;">Políticas de uso</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="h5 text-light text-left">Compañía</h5>
+                    <br>
+                    <p class="text-secondary" style="cursor: pointer;">Acerca de nosotros</p>
+                    <p class="text-secondary" style="cursor: pointer;">Puestos de trabajo</p>
+                    <p class="text-secondary" style="cursor: pointer;">Afiliados</p>
+                    <p class="text-secondary" style="cursor: pointer;">Recompensas</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="text-light">Copyright <i class="fa fa-copyright"></i> 2020 Crivant</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mcompra" tabindex="-1" role="dialog" aria-labelledby="mcompralLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comprar producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="h5 font-weight-bold">¡Hola! Ayúdanos a indicar los productos que deseas adquirir</h5>
+                    <div class="text-left">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="chk1">
+                            <label class="form-check-label" for="chk1">
+                                Bebidas y alimentos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="2" id="chk2">
+                            <label class="form-check-label" for="chk2">
+                                Atún
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="3" id="chk3">
+                            <label class="form-check-label" for="chk3">
+                                Productos de limpieza
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="4" id="chk4">
+                            <label class="form-check-label" for="chk4">
+                                Fideos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="5" id="chk5">
+                            <label class="form-check-label" for="chk5">
+                                Arroz
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="6" id="chk6">
+                            <label class="form-check-label" for="chk6">
+                                Lácteos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="7" id="chk7">
+                            <label class="form-check-label" for="chk7">
+                                Embutidos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="8" id="chk8">
+                            <label class="form-check-label" for="chk8">
+                                Azúcar
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="9" id="chk9">
+                            <label class="form-check-label" for="chk9">
+                                Pan
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="10" id="chk10">
+                            <label class="form-check-label" for="chk10">
+                                Menestras
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="11" id="chk11">
+                            <label class="form-check-label" for="chk11">
+                                Snacks
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="12" id="chk12">
+                            <label class="form-check-label" for="chk12">
+                                Cerveza, vinos
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="txotro" placeholder="Otro producto">
+                        </div>
+                        <div class="form-group">
+                            <label for="txnombre">Nombres y apellidos</label>
+                            <input type="text" class="form-control" id="txnombre" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="slcde">Departamento</label>
+                            <select class="form-control" id="slcde">
+                                <option value="14">Lima</option>
+                                <option value="1">Amazonas</option>
+                                <option value="2">Ancash</option>
+                                <option value="3">Apurímac</option>
+                                <option value="4">Arequipa</option>
+                                <option value="5">Ayacucho</option>
+                                <option value="6">Cajamarca</option>
+                                <option value="7">Cusco</option>
+                                <option value="8">Huancavelica</option>
+                                <option value="9">Huánuco</option>
+                                <option value="10">Ica</option>
+                                <option value="11">Junín</option>
+                                <option value="12">La Libertad</option>
+                                <option value="13">Lambayeque</option>
+                                <option value="15">Loreto</option>
+                                <option value="16">Madre de Dios</option>
+                                <option value="17">Moquegua</option>
+                                <option value="18">Pasco</option>
+                                <option value="19">Piura</option>
+                                <option value="20">Puno</option>
+                                <option value="21">San Martín</option>
+                                <option value="22">Tacna</option>
+                                <option value="23">Tumbes</option>
+                                <option value="24">Ucayali</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="txemail">Correo electrónico</label>
+                            <input type="email" class="form-control" id="txemail" placeholder="su correo">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="enviarCompra()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mventa" tabindex="-1" role="dialog" aria-labelledby="mventaLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Obtén tu demo ahora GRATIS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="h5 font-weight-bold">¡Hola! Ayúdanos a indicar los datos, te escribiremos lo más pronto posible</h5>
+                    <br>
+                    <div class="row text-center">
+                        <div class="col-md-6 text-left">
+                            <div class="form-group">
+                                <label for="txnombrec2">Nombre</label>
+                                <input type="text" class="form-control" id="txnombrec2" placeholder="Ingrese su nombre" maxlength="125">
+                            </div>
+                            <div class="form-group">
+                                <label for="txcelular2">Celular (opcional)</label>
+                                <input type="text" class="form-control" id="txcelular2" placeholder="Nro de celular" maxlength="9">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <div class="form-group">
+                                <label for="txcorreoVenta2">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="txcorreoVenta2" placeholder="" maxlength="125">
+                            </div>
+                            <div class="form-group">
+                                <label for="slcde2">Distrito</label>
+                                <select class="form-control" id="slcde2">
+                                    <option value="0" selected="selected">Seleccione un Distrito</option>
+                                    <option value="1">ATE</option>
+                                    <option value="2">BARRANCO</option>
+                                    <option value="3">CERCADO DE LIMA</option>
+                                    <option value="4">CHORRILLOS</option>
+                                    <option value="5">CIENEGUILLA</option>
+                                    <option value="6">COMAS</option>
+                                    <option value="7">EL AGUSTINO</option>
+                                    <option value="8">INDEPENDENCIA</option>
+                                    <option value="9">JESUS MARIA</option>
+                                    <option value="10">LA MOLINA</option>
+                                    <option value="11">LA VICTORIA</option>
+                                    <option value="12">LINCE</option>
+                                    <option value="13">LOS OLIVOS</option>
+                                    <option value="14">LURIN</option>
+                                    <option value="15">MAGDALENA DEL MAR</option>
+                                    <option value="16">PUEBLO LIBRE</option>
+                                    <option value="17">MIRAFLORES</option>
+                                    <option value="18">RIMAC</option>
+                                    <option value="19">SAN BORJA</option>
+                                    <option value="20">SAN ISIDRO</option>
+                                    <option value="21">SAN JUAN DE LURIGANCHO</option>
+                                    <option value="22">SAN JUAN DE MIRAFLORES</option>
+                                    <option value="23">SAN LUIS</option>
+                                    <option value="24">SAN MARTIN DE PORRES</option>
+                                    <option value="25">SAN MIGUEL</option>
+                                    <option value="26">SANTA ANITA</option>
+                                    <option value="27">SANTIAGO DE SURCO</option>
+                                    <option value="28">SURQUILLO</option>
+                                    <option value="29">VILLA EL SALVADOR</option>
+                                    <option value="30">VILLA MARIA DEL TRIUNFO</option>
+                                    <option value="31">ANCON</option>
+                                    <option value="32">CARABAYLLO</option>
+                                    <option value="33">CHACLACAYO</option>
+                                    <option value="34">PACHACAMAC</option>
+                                    <option value="35">PUCUSANA</option>
+                                    <option value="36">PUENTE PIEDRA</option>
+                                    <option value="37">PUNTA HERMOSA</option>
+                                    <option value="38">PUNTA NEGRA</option>
+                                    <option value="39">SAN BARTOLO</option>
+                                    <option value="40">SANTA MARIA DEL MAR</option>
+                                    <option value="41">SANTA ROSA</option>
+                                    <option value="42">CHOSICA (LURIGANCHO)</option>
+                                    <option value="43">BREÑA</option>
+                                    <option value="44">FUERA DE LIMA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="enviarVenta2()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalimagen" tabindex="-1" role="dialog" aria-labelledby="modalimagenLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" style="width: 100%;height: 80%" id="imgmodal">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDemo" tabindex="-1" role="dialog" aria-labelledby="modalDemoLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg modal-xs" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*<embed src="@Url.Action("index","Index")" width="700" height="500" />*@
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="" id="ifrm"></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/src/index/jquery.js"></script>
+    <script src="~/Content/src/index/popper.min.js"></script>
+    <script src="~/Content/src/index/bootstrap.min.js"></script>
+    <script>
+        var vgruta = "@Url.Content("~")";
+        var datourl = window.location.pathname;
+        var rutaservidor = window.location.host;
+
+        function fnRoute() {
+            window.location.href = rutaservidor;
+        }
+
+        var img1 = "/Content/img/index/acercade1zoom.png";
+        var img2 = "/Content/img/index/acercade2zoom.png";
+        var img3 = "/Content/img/index/acercade3zoom.png";
+
+        function AbrirModal(tipo) {
+            if (tipo === 1) {
+                $('#imgmodal').attr("src", img1);
+                $('#modalimagen').modal('show');
+            } else if (tipo === 2) {
+                $('#imgmodal').attr("src", img2);
+                $('#modalimagen').modal('show');
+            } else {
+                $('#imgmodal').attr("src", img3);
+                $('#modalimagen').modal('show');
+            }
+
+        }
+
+        function enviarCompra() {
+            var chk1 = $('#chk1').is(':checked');
+            var chk2 = $('#chk2').is(':checked');
+            var chk3 = $('#chk3').is(':checked');
+            var chk4 = $('#chk4').is(':checked');
+            var chk5 = $('#chk5').is(':checked');
+            var chk6 = $('#chk6').is(':checked');
+            var chk7 = $('#chk7').is(':checked');
+            var chk8 = $('#chk8').is(':checked');
+            var chk9 = $('#chk9').is(':checked');
+            var chk10 = $('#chk10').is(':checked');
+            var chk11 = $('#chk11').is(':checked');
+            var chk12 = $('#chk12').is(':checked');
+            var arrayprod = [chk1, chk2, chk3, chk4, chk5, chk6, chk7, chk8, chk9, chk10, chk11, chk12];
+
+            var chkotro = $('#txotro').val();
+            var txnombre = $('#txnombre').val();
+            var slcDepartamento = $('#slcde option').filter(':selected').val();
+            var txCorreo = $('#txemail').val();
+
+            if (txnombre == "" || txCorreo == "") {
+                alert("Por favor completar los campos");
+            } else {
+                $.ajax({
+                    url: vgruta + "landing/enviarCompra",
+                    cache: false,
+                    type: "POST",
+                    data: {
+                        "wchk": arrayprod.toString(),
+                        "wotro": chkotro,
+                        "wnombre": txnombre,
+                        "widepartamento": slcDepartamento,
+                        "wcorreo": txCorreo
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta);
+                        $('#mcompra').modal('hide');
+                        $('#alertaRegistro').show();
+
+
+                        $('#txotro').val("");
+                        $('#txnombre').val("");
+                        $('#txemail').val("");
+                        $('#chk1').prop('checked', false);
+                        $('#chk2').prop('checked', false);
+                        $('#chk3').prop('checked', false);
+                        $('#chk4').prop('checked', false);
+                        $('#chk5').prop('checked', false);
+                        $('#chk6').prop('checked', false);
+                        $('#chk7').prop('checked', false);
+                        $('#chk8').prop('checked', false);
+                        $('#chk9').prop('checked', false);
+                        $('#chk10').prop('checked', false);
+                        $('#chk11').prop('checked', false);
+                        $('#chk12').prop('checked', false);
+
+                    },
+                    error: function () {
+                        console.log("error al registrar");
+                    }
+                });
+            }
+
+        }
+
+        function enviarVenta() {
+
+            var txContacto = $('#txnombrec').val();
+            var txCelular = $('#txcelular').val();
+            var slcDepartamento = $('#slcde option').filter(':selected').val();
+            var txCorreoVenta = $('#txcorreoVenta').val();
+
+            if (txContacto === "" || slcDepartamento === "0" || txCorreoVenta === "") {
+                alert("Por favor completar los campos");
+            } else {
+                $.ajax({
+                    url: vgruta + "landing/enviarVenta",
+                    cache: false,
+                    type: "POST",
+                    data: {
+                        "wtienda": "",
+                        "wcontacto": txContacto,
+                        "wcelular": txCelular,
+                        "witiponegocio": 1,
+                        "wruc": "",
+                        "wdireccion": "",
+                        "widepartamento": slcDepartamento,
+                        "wcorreoventa": txCorreoVenta
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta);
+                        $('#mventa').modal('hide');
+                        $('#alertaRegistro').show();
+
+                        $('#txnombrec').val("");
+                        $('#txcelular').val("");
+                        $('#txcorreoVenta').val("");
+                    },
+                    error: function () {
+                        console.log("error al registrar");
+                    }
+                });
+            }
+
+        }
+
+        function enviarVenta2() {
+
+            var txContacto = $('#txnombrec2').val();
+            var txCelular = $('#txcelular2').val();
+            var slcDepartamento = $('#slcde2 option').filter(':selected').val();
+            var txCorreoVenta = $('#txcorreoVenta2').val();
+
+            if (txContacto === "" || slcDepartamento === "0" || txCorreoVenta === "") {
+                alert("Por favor completar los campos");
+            } else {
+                $.ajax({
+                    url: vgruta + "landing/enviarVenta",
+                    cache: false,
+                    type: "POST",
+                    data: {
+                        "wtienda": "",
+                        "wcontacto": txContacto,
+                        "wcelular": txCelular,
+                        "witiponegocio": 1,
+                        "wruc": "",
+                        "wdireccion": "",
+                        "widepartamento": slcDepartamento,
+                        "wcorreoventa": txCorreoVenta
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta);
+                        $('#mventa').modal('hide');
+                        $('#alertaRegistro').show();
+
+                        $('#txnombrec2').val("");
+                        $('#txcelular2').val("");
+                        $('#txcorreoVenta2').val("");
+                    },
+                    error: function () {
+                        console.log("error al registrar");
+                    }
+                });
+            }
+
+        }
+
+        $(document).ready(function () {
+            $('#btnDemo').click(function () {
+                window.open(
+                    vgruta + "index/index",
+                    '_blank'
+                );
+                //window.location.href = vgruta + "index/index";
+                /*$('#modalDemo').modal({
+                    show: true
+                });
+                $('#ifrm').attr("src", "");
+                    */
+            });
+        });
+
+    </script>
+
+</body>
+</html>

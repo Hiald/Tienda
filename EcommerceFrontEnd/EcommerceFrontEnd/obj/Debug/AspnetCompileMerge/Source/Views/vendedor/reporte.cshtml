@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+<link href="~/Content/css/chartist.min.css" rel="stylesheet" />
+<br />
+<br />
+<br />
+<div class="page-title-overlap bg-accent pt-5">
+    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+        <div class="media media-ie-fix align-items-center pb-3">
+            <div class="media-body pl-3">
+                <h3 class="text-light font-size-lg mb-0">Vendedor</h3>
+                <span class="d-block text-light font-size-ms opacity-60 py-1">Miembro desde Julio 2020</span>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="text-sm-right mr-5">
+                <div class="text-light font-size-base">Ventas totales</div>
+                <h3 class="text-light" id="hTotalVenta"></h3>
+            </div>
+            <div class="text-sm-right">
+                <div class="text-light font-size-base">Valoración</div>
+                <div class="star-rating">
+                    <i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star-filled active"></i><i class="sr-star czi-star"></i>
+                </div>
+                <div class="text-light opacity-60 font-size-xs">Basado en 5 valoraciones</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5 pb-3">
+    <div class="bg-light box-shadow-lg rounded-lg overflow-hidden">
+        <div class="row">
+            <!-- Sidebar-->
+            <aside class="col-lg-4">
+                <!-- toggler de menu (oculto en pantallas de largo 992px)-->
+                <div class="d-block d-lg-none p-4">
+                    <a class="btn btn-outline-accent d-block" href="#account-menu" data-toggle="collapse">
+                        <i class="czi-menu mr-2"></i>Menú de cuenta
+                    </a>
+                </div>
+                <!-- Menu actual-->
+                <div class="cz-sidebar-static h-100 p-0">
+                    <div class="secondary-nav collapse border-right" id="account-menu">
+                        <div class="bg-secondary p-4">
+                            <h3 class="font-size-sm mb-0 text-muted">Mi cuenta</h3>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3">
+                                    <i class="czi-settings opacity-60 mr-2"></i>Configuración
+                                </a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3">
+                                    <i class="czi-basket opacity-60 mr-2"></i>Compras
+                                </a>
+                            </li>
+                            <li class="mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3">
+                                    <i class="czi-heart opacity-60 mr-2"></i>Favoritos
+                                    <span class="font-size-sm text-muted ml-auto">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="bg-secondary p-4">
+                            <h3 class="font-size-sm mb-0 text-muted">Tabla de vendedor</h3>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3 active">
+                                    <i class="czi-dollar opacity-60 mr-2"></i>Ventas
+                                    <span class="font-size-sm text-muted ml-auto" id="spnVentas"></span>
+                                </a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="@Url.Action("listado","producto")">
+                                    <i class="czi-cloud-upload opacity-60 mr-2"></i>Agregar nuevo producto
+                                </a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3">
+                                    <i class="czi-currency-exchange opacity-60 mr-2"></i>Pagos
+                                </a>
+                            </li>
+                            <li class="mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3">
+                                    <i class="czi-sign-out opacity-60 mr-2"></i>Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <!-- Contenido -->
+            <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+                <div class="pt-2 px-4 pl-lg-0 pr-xl-5">
+                    <h2 class="h3 py-2 text-center text-sm-left">Tus ventas / Ingresos</h2>
+                    <div class="row mx-n2 pt-2">
+                        <div class="col-md-4 col-sm-6 px-2 mb-4">
+                            <div class="bg-secondary h-100 rounded-lg p-4 text-center">
+                                <h3 class="font-size-sm text-muted">Ganancias (Mensual)</h3>
+                                <p class="h2 mb-2" id="pGanancia"></p>
+                                <p class="font-size-ms text-muted mb-0">Desde 01/07/2020 - 23/07/2020</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 px-2 mb-4">
+                            <div class="bg-secondary h-100 rounded-lg p-4 text-center">
+                                <h3 class="font-size-sm text-muted">Tu saldo</h3>
+                                <p class="h2 mb-2" id="pSaldo"></p>
+                                <p class="font-size-ms text-muted mb-0">Para pagar el 08/20/2020</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 px-2 mb-4">
+                            <div class="bg-secondary h-100 rounded-lg p-4 text-center">
+                                <h3 class="font-size-sm text-muted">Ganancias Generales</h3>
+                                <p class="h2 mb-2" id="pGananciaGeneral"></p>
+                                <p class="font-size-ms text-muted mb-0">Basado en el precio de la venta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-n2">
+                        <div class="col-lg-8 px-2">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h3 class="font-size-sm pb-3 mb-3 border-bottom">
+                                        Valor de las ventas, en PEN (soles)
+                                        <span class="font-weight-normal font-size-xs text-muted">(Todo el mes)</span>
+                                    </h3>
+                                    <div class="ct-chart ct-perfect-fourth"
+                                         data-line-chart="{
+                                         &quot;labels&quot;: [
+                                         &quot;01 &quot;
+                                         , &quot;&quot;
+                                         , &quot;05 &quot;
+                                         , &quot;&quot;
+                                         , &quot;10 &quot;
+                                         , &quot;&quot;
+                                         , &quot;15 &quot;
+                                         , &quot;&quot;
+                                         , &quot;20 &quot;
+                                         , &quot;&quot;
+                                         , &quot;25 &quot;
+                                         , &quot;&quot;
+                                         , &quot;30/31 &quot;
+                                         , &quot;&quot;],
+                                         &quot;series&quot;: [[26.90, 150, 500, 150, 50, 250, 253, 50, 80, 50, 50, 250, 320, 100]]}">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4 mb-lg-2">
+                                <div class="card-body">
+                                    <h3 class="font-size-sm pb-3 mb-3 border-bottom">
+                                        Conteo de pedidos
+                                        <span class="font-weight-normal font-size-xs text-muted">(Todo el mes)</span>
+                                    </h3>
+                                    <div class="ct-chart ct-perfect-fourth"
+                                         data-line-chart="{&quot;labels&quot;:
+                                         [&quot;01&quot;
+                                         , &quot;&quot;
+                                         , &quot;05&quot;
+                                         , &quot;&quot;
+                                         , &quot;10&quot;
+                                         , &quot;&quot;
+                                         , &quot;15&quot;
+                                         , &quot;&quot;
+                                         , &quot;20&quot;
+                                         , &quot;&quot;
+                                         , &quot;25&quot;
+                                         , &quot;&quot;
+                                         , &quot;30/31&quot;
+                                         , &quot;&quot;],
+                                         &quot;series&quot;: [[0, 2, 4, 3, 1, 0, 0, 1, 0, 1, 1, 1, 0, 2]]}"
+                                         data-options="{&quot;axisY&quot;: {&quot;onlyInteger&quot;: true}}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 px-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="font-size-sm pb-3 mb-0 border-bottom">Top Ciudades</h3>
+                                    <div class="d-flex justify-content-between align-items-center font-size-sm py-2 border-bottom">
+                                        <div class="media media-ie-fix py-1">
+                                            <div class="media-body pl-1">Lima</div>
+                                        </div><span>S/. 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/vendedor/reporte.js"></script>
+}
+<script src="~/Content/js/chartist.min.js"></script>

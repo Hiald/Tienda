@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "Configuración";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+<style>
+    .dataTables_paginate {
+        float: right !important;
+    }
+</style>
+
+<br />
+<!-- Page title-->
+<div class="border-bottom mt-lg-2 pt-5 pb-2 mb-3">
+    <h3 class="mt-lg-2 pl-lg-3 pt-lg-5 h3">Gestión de Especificación</h3>
+    <p class="mt-lg-2 pl-lg-3">Puedes crear las especificaciones por cada plato o de cada artículo en general, por ejemplo, pedir porción por plato, o cremas a elegir</p>
+</div>
+
+<div class="container pull-up mt-5">
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfiguracion">
+            Nueva Especificación
+        </button>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblConfiguracion" class="table" style="width:100%">
+                            <colgroup>
+                                <col width="30%" />
+                                <col width="30%" />
+                                <col width="20%" />
+                                <col width="20%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Valor</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Registrar -->
+<div class="modal fade" id="modalConfiguracion" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar Especificación</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm1">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txValor">Valor</label>
+                            <input class="form-control" type="text" id="txValor" placeholder="ejemplo: XL" value="" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcTipoConfiguracion">Tipo de Especificación:</label>
+                            <select class="form-control custom-select" id="slcTipoConfiguracion" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="1">Porción de plato</option>
+                                <option value="2">Complemento</option>
+                                <option value="3">Bebida a elegir</option>
+                                <option value="4">Talla de ropa</option>
+                                <option value="5">Color</option>
+                                <option value="6">Talla de calzado</option>
+                                <option value="7">Otra especificación</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione una opción.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarA" onclick="fn_Limpiar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarA" onclick="fn_Registrar()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="modalEditarConfiguracion" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idconfiguracion="" id="hddconfiguracion" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Especificación</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txValorEd">Valor</label>
+                            <input class="form-control" type="text" id="txValorEd" placeholder="ejemplo: XL" value="" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcTipoConfiguracionEd">Tipo de Especificación:</label>
+                            <select class="form-control custom-select" id="slcTipoConfiguracionEd" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="1">Porción de plato</option>
+                                <option value="2">Complemento</option>
+                                <option value="3">Bebida a elegir</option>
+                                <option value="4">Talla de ropa</option>
+                                <option value="5">Color</option>
+                                <option value="6">Talla de calzado</option>
+                                <option value="7">Otra especificación</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione una opción.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarEd" onclick="fn_LimpiarEditar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarEd" onclick="fn_Actualizar()">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="modalEliminarConfiguracion" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idconfiguracionEliminar="" id="hddconfiguracionEliminar" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm3">
+                <div class="modal-body">
+                    <h5 class="h5">¿Desea eliminar la configuración?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarEl">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarEl" onclick="fn_ConfimarEliminar()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#frm1').submit(false);
+        $('#frm2').submit(false);
+        $('#frm3').submit(false);
+    </script>
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/configuracion/configuracion.js"></script>
+}

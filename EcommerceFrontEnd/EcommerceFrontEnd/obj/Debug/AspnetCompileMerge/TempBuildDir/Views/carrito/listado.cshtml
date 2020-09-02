@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "listado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #sideNav {
+        display: none;
+    }
+
+    #divCarrito {
+        display: none;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<div class="page-title-overlap bg-dark pt-4 mt-3">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="@Url.Action("Index","index")"><i class="czi-home"></i>Inicio</a></li>
+                    <li class="breadcrumb-item text-nowrap">
+                        <a>Tienda</a>
+                    </li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">Carrito</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+            <h1 class="h3 text-light mb-0">Tu carrito</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5 mb-2 mb-md-4">
+    <div class="row">
+        <!-- List of items-->
+        <section class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1">
+                <h2 class="h6 text-light mb-0">Productos</h2><a class="btn btn-outline-primary btn-sm pl-2" href="@Url.Action("Index", "index")">
+                    <i class="czi-arrow-left mr-2"></i>Continuar comprando
+                </a>
+            </div>
+
+            <div id="body-carrito">
+                <!-- detalle del carrito -->
+            </div>
+
+        </section>
+        <!-- lista subtotal <small>00</small> -->
+        <aside class="col-lg-4 pt-4 pt-lg-0">
+            <div class="cz-sidebar-static rounded-lg box-shadow-lg ml-lg-auto">
+                <div class="text-center mb-4 pb-3 border-bottom">
+                    <h2 class="h6 mb-3 pb-1">Subtotal</h2>
+                    <h3 class="font-weight-normal" id="csubtotal"></h3>
+                </div>
+                <a class="btn btn-primary btn-shadow btn-block mt-4" id="btnPago">
+                    <i class="czi-card font-size-lg mr-2"></i>Proceder con el Pago
+                </a>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<div class="toast-container toast-top-left">
+    <div class="toast mb-3" id="cart-upd" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+            <i class="czi-check-circle mr-2"></i>
+            <h6 class="font-size-sm text-white mb-0 mr-auto">Carrito de compras!</h6>
+            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">¡Actualizado!</div>
+    </div>
+</div>
+
+<div class="toast-container toast-top-left">
+    <div class="toast mb-3" id="cart-inf" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-info text-white">
+            <i class="czi-check-circle mr-2"></i>
+            <h6 class="font-size-sm text-white mb-0 mr-auto">Información</h6>
+            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">No hay cambios que hacer con este producto</div>
+    </div>
+</div>
+
+<div class="toast-container toast-top-left">
+    <div class="toast mb-3" id="cart-infdel" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-info text-white">
+            <i class="czi-check-circle mr-2"></i>
+            <h6 class="font-size-sm text-white mb-0 mr-auto">Información</h6>
+            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">Producto eliminado del carrito</div>
+    </div>
+</div>
+
+<div class="toast-container toast-top-left">
+    <div class="toast mb-3" id="cart-infempty2" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-info text-white">
+            <i class="czi-check-circle mr-2"></i>
+            <h6 class="font-size-sm text-white mb-0 mr-auto">Información</h6>
+            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">No hay productos en el carrito, ¡Agrega algunos!</div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" role="tab" aria-selected="true">
+                            <i class="czi-cart mr-2 mt-n1"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-body tab-content py-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                        <h6 class="h6">Por favor espera...</h6>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@ViewBag.BValorCuenta" id="hddvalorCuenta2" />
+@section scripts{
+    <script src="~/Content/src/carrito/listado.js"></script>
+}

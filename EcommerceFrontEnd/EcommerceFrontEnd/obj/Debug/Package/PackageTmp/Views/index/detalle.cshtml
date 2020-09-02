@@ -1,0 +1,576 @@
+﻿@{
+    ViewBag.Title = "detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    @@media (min-width: 320px) and (max-width: 480px) {
+        #divimg1 {
+            height: 210px !important
+        }
+
+        #divimg2 {
+            height: 210px !important
+        }
+
+        #divimg3 {
+            height: 210px !important
+        }
+    }
+</style>
+<!-- Page-->
+<input type="hidden" id="inproductoid" value="@ViewBag.GproductoID" />
+<main class="sidebar-fixed-enabled" style="padding-top: 5rem;">
+    <section class="px-lg-3 pt-4">
+        <div class="px-3 pt-2">
+            <!-- Page title + breadcrumb-->
+            <nav class="mb-4" aria-label="breadcrumb">
+                <ol class="breadcrumb flex-lg-nowrap">
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="@Url.Action("index", "index")"><i class="czi-home"></i>Inicio</a></li>
+                    <li class="breadcrumb-item text-nowrap">
+                        <a href="@Url.Action("producto", "index")">Catálogo de productos</a>
+                    </li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">Producto</li>
+                </ol>
+            </nav>
+            <!-- Content-->
+            <!-- Product Gallery + description-->
+            <section class="row no-gutters mx-n2 pb-2 mb-xl-3">
+                <div class="col-xl-7 px-2 mb-3">
+                    <div class="h-100 bg-light rounded-lg p-4">
+                        <div class="cz-product-gallery">
+                            <div class="cz-preview order-sm-2">
+                                @{
+                                    int surl1 = ViewBag.lstProducto.simagen1.Length - 1;
+                                    int surl2 = ViewBag.lstProducto.simagen2.Length - 1;
+                                    int surl3 = ViewBag.lstProducto.simagen3.Length - 1;
+                                }
+                                <div class="cz-preview-item active" id="first">
+                                    <img class="cz-image-zoom" id="divimg1"
+                                         data-zoom="@ViewBag.lstProducto.simagen1.ToString().Substring(1, surl1)"
+                                         style="height: 350px;width:500px;" src="@ViewBag.lstProducto.simagen1.ToString().Substring(1, surl1)" alt="Producto imagen">
+                                    <div class="cz-image-zoom-pane"></div>
+                                </div>
+                                <div class="cz-preview-item" id="second">
+                                    <img class="cz-image-zoom"
+                                         data-zoom="@ViewBag.lstProducto.simagen2.ToString().Substring(1, surl2)"
+                                         id="divimg2" style="height: 350px;width:500px;" src="@ViewBag.lstProducto.simagen2.ToString().Substring(1, surl2)" alt="Producto imagen">
+                                    <div class="cz-image-zoom-pane"></div>
+                                </div>
+                                <div class="cz-preview-item" id="third">
+                                    <img class="cz-image-zoom"
+                                         data-zoom="@ViewBag.lstProducto.simagen3.ToString().Substring(1, surl3)"
+                                         id="divimg3" style="height: 350px;width:500px;" src="@ViewBag.lstProducto.simagen3.ToString().Substring(1, surl3)" alt="Producto imagen">
+                                    <div class="cz-image-zoom-pane"></div>
+                                </div>
+                            </div>
+                            <div class="cz-thumblist order-sm-1">
+                                <a class="cz-thumblist-item active" href="#first">
+                                    <img src="@ViewBag.lstProducto.simagen1.ToString().Substring(1, surl1)" alt="Product thumb">
+                                </a><a class="cz-thumblist-item" href="#second">
+                                    <img src="@ViewBag.lstProducto.simagen2.ToString().Substring(1, surl2)" alt="Product thumb">
+                                </a><a class="cz-thumblist-item" href="#third">
+                                    <img src="@ViewBag.lstProducto.simagen3.ToString().Substring(1, surl3)" alt="Product thumb">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 px-2 mb-3">
+                    <div class="h-100 bg-light rounded-lg py-5 px-4 px-sm-5">
+                        <a class="product-meta d-block font-size-sm pb-2">@ViewBag.lstProducto.scategoria</a>
+                        <h1 class="h2">@ViewBag.lstProducto.snombreProducto</h1>
+                        <div class="h2 font-weight-normal text-accent">
+                            S/.&nbsp;
+                            @if (ViewBag.lstProducto.ipromociontipo == 0)
+                            {
+                                @ViewBag.lstProducto.dprecio
+                            }
+                            else
+                            {
+                                @ViewBag.lstProducto.dpreciopromocion
+                            }
+
+                            <!--<small>90</small> produdctoid, nombre, imagen, cantidad, precio -->
+                        </div>
+                        <div class="form-group d-flex flex-wrap align-items-center pt-4 pb-2">
+                            <select id="slcCantidad" class="custom-select mr-3 mb-3" style="width: 5rem;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            @if (ViewBag.lstProducto.ipromociontipo == 0)
+                            {
+                                <input type="hidden" id="hddCarrito"
+                                       data-productoid="@ViewBag.lstProducto.productoid"
+                                       data-snombre="@ViewBag.lstProducto.snombreProducto"
+                                       data-simagen="@ViewBag.lstProducto.simagen1"
+                                       data-ivendedor="@ViewBag.lstProducto.vendedorid"
+                                       data-icantidad=""
+                                       data-dprecio="@ViewBag.lstProducto.dprecio" />
+                            }
+                            else
+                            {
+                                <input type="hidden" id="hddCarrito"
+                                       data-productoid="@ViewBag.lstProducto.productoid"
+                                       data-snombre="@ViewBag.lstProducto.snombreProducto"
+                                       data-simagen="@ViewBag.lstProducto.simagen1"
+                                       data-ivendedor="@ViewBag.lstProducto.vendedorid"
+                                       data-icantidad=""
+                                       data-dprecio="@ViewBag.lstProducto.dpreciopromocion" />
+                            }
+                            <button class="btn btn-primary btn-shadow mr-3 mb-3"
+                                    onclick="fn_AgregarCarro();">
+                                <i class="czi-cart font-size-lg mr-2"></i>Agregar al carro
+                            </button>
+                            <button class="btn btn-icon btn-secondary mb-3"
+                                    data-toggle="tooltip" title="Añadir a la lista de deseos">
+                                <i class="czi-heart font-size-lg"></i>
+                            </button>
+                        </div>
+                        <h6>Descripción del producto</h6>
+                        <ul class="list-unstyled font-size-sm pt-2 mb-0">
+                            <li>
+                                <i class="czi-check-circle text-success mr-2"></i>
+                                @ViewBag.lstProducto.sdescripcionProducto
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Descripcion del producto, video y revision general -->
+            <section class="container mb-4 mb-lg-5">
+                <!-- Nav tabs-->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab" id="ttab1">Protección COVID-19</a></li>
+                    <li class="nav-item"><a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab" id="ttab2">Valoraciones</a></li>
+                    <li class="nav-item"><a class="nav-link p-4" href="#comments" data-toggle="tab" role="tab" id="ttab3">Detalle del producto</a></li>
+                </ul>
+                <div class="tab-content pt-2">
+                    <!-- Tab como se hace -->
+                    <div class="tab-pane fade show active" id="details" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h3 class="h5 pt-2">Cuidados de los productos ante el Covid-19</h3>
+                                <a id="spnVideo" href="https://www.youtube.com/watch?v=fchpjr84icE" class="video-popup-btn mr-3"></a>
+                                <span class="font-size-sm text-muted">Ver video</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab valoracion general -->
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <!-- Reviews-->
+                        <div class="row pt-2 pb-3">
+                            <div class="col-lg-4 col-md-5">
+                                <h3 class="h4 mb-4">74 Valoraciones</h3>
+                                <div class="star-rating mr-2">
+                                    <i class="czi-star-filled font-size-sm text-accent mr-1"></i>
+                                    <i class="czi-star-filled font-size-sm text-accent mr-1"></i>
+                                    <i class="czi-star-filled font-size-sm text-accent mr-1"></i>
+                                    <i class="czi-star-filled font-size-sm text-accent mr-1"></i>
+                                    <i class="czi-star font-size-sm text-muted mr-1"></i>
+                                </div>
+                                <span class="d-inline-block align-middle">4.1 Valoración general</span>
+                                <p class="pt-3 font-size-sm text-muted">58 de 74 (77%)<br>Clientes recomendados para este producto</p>
+                            </div>
+                            <div class="col-lg-8 col-md-7">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="text-nowrap mr-3">
+                                        <span class="d-inline-block align-middle text-muted">5</span>
+                                        <i class="czi-star-filled font-size-xs ml-1"></i>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div><span class="text-muted ml-3">43</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="text-nowrap mr-3">
+                                        <span class="d-inline-block align-middle text-muted">4</span>
+                                        <i class="czi-star-filled font-size-xs ml-1"></i>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar" role="progressbar" style="width: 27%; background-color: #a7e453;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div><span class="text-muted ml-3">16</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="text-nowrap mr-3">
+                                        <span class="d-inline-block align-middle text-muted">3</span>
+                                        <i class="czi-star-filled font-size-xs ml-1"></i>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar" role="progressbar" style="width: 17%; background-color: #ffda75;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div><span class="text-muted ml-3">9</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="text-nowrap mr-3">
+                                        <span class="d-inline-block align-middle text-muted">2</span>
+                                        <i class="czi-star-filled font-size-xs ml-1"></i>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar" role="progressbar" style="width: 9%; background-color: #fea569;" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div><span class="text-muted ml-3">4</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="text-nowrap mr-3">
+                                        <span class="d-inline-block align-middle text-muted">1</span>
+                                        <i class="czi-star-filled font-size-xs ml-1"></i>
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 4%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div><span class="text-muted ml-3">2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt-4 pb-4 mb-3">
+                        <div class="row pb-4">
+                            <!-- Lista de valoraciones -->
+                            <div class="col-md-7">
+                                <div class="d-flex justify-content-end pb-4">
+                                    <div class="form-inline flex-nowrap">
+                                        <label class="text-muted text-nowrap mr-2 d-none d-sm-block" for="sort-reviews">Ördenar por:</label>
+                                        <select class="custom-select custom-select-sm" id="sort-reviews">
+                                            <option>Últimos</option>
+                                            <option>Antiguos</option>
+                                            <option>Populares</option>
+                                            <option>Más valorados</option>
+                                            <option>Poco valorados</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Review-->
+                                <div class="product-review pb-4 mb-4 border-bottom">
+                                    <div class="d-flex mb-3">
+                                        <div class="media media-ie-fix align-items-center mr-4 pr-2">
+                                            <img class="rounded-circle" width="50" src="~/Content/img/0_3.jpg" alt="Rafael Marquez" />
+                                            <div class="media-body pl-3">
+                                                <h6 class="font-size-sm mb-0">Rafael Marquez</h6><span class="font-size-ms text-muted">Junio 28, 2019</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="font-size-md mb-2">
+                                        Este producto me gusta mucho, ya lo he comprado varias veces y todas siempre con el cuidado respectivo
+                                    </p>
+                                    <div class="text-nowrap">
+                                        <button class="btn-like" type="button">15</button>
+                                        <button class="btn-dislike" type="button">3</button>
+                                    </div>
+                                </div>
+                                <!-- Review-->
+                                <div class="product-review pb-4 mb-4 border-bottom">
+                                    <div class="d-flex mb-3">
+                                        <div class="media media-ie-fix align-items-center mr-4 pr-2">
+                                            <img class="rounded-circle" width="50" src="~/Content/img/0_4.jpg" alt="Barbara Palson" />
+                                            <div class="media-body pl-3">
+                                                <h6 class="font-size-sm mb-0">Barbara Palson</h6><span class="font-size-ms text-muted">Mayo 17, 2019</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="font-size-md mb-2">
+                                        Este producto me gusta mucho, ya lo he comprado varias veces y todas siempre con el cuidado respectivo
+                                    </p>
+                                    <div class="text-nowrap">
+                                        <button class="btn-like" type="button">34</button>
+                                        <button class="btn-dislike" type="button">1</button>
+                                    </div>
+                                </div>
+                                <!-- Review-->
+                                <div class="product-review pb-4 mb-4 border-bottom">
+                                    <div class="d-flex mb-3">
+                                        <div class="media media-ie-fix align-items-center mr-4 pr-2">
+                                            <img class="rounded-circle" width="50" src="~/Content/img/0_2.jpg" alt="Daniel Adams" />
+                                            <div class="media-body pl-3">
+                                                <h6 class="font-size-sm mb-0">Daniel Adams</h6>
+                                                <span class="font-size-ms text-muted">Mayo 8, 2019</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="font-size-md mb-2">
+                                        Este producto me gusta mucho, ya lo he comprado varias veces y todas siempre con el cuidado respectivo
+                                    </p>
+                                    <div class="text-nowrap">
+                                        <button class="btn-like" type="button">26</button>
+                                        <button class="btn-dislike" type="button">9</button>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-accent" type="button"><i class="czi-reload mr-2"></i>Cargar más comentarios</button>
+                                </div>
+                            </div>
+                            <!-- Leave review form-->
+                            <div class="col-md-5 mt-2 pt-4 mt-md-0 pt-md-0">
+                                <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-lg">
+                                    <h3 class="h4 pb-2">Escribe una valoración</h3>
+                                    <form class="needs-validation" method="post" novalidate>
+                                        <div class="form-group">
+                                            <label for="review-name">Tu nombre<span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text" required id="review-name">
+                                            <div class="invalid-feedback">Por favor ingrese su nombre!</div><small class="form-text text-muted">Mostraremos el comentario.</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="review-rating">Valoración<span class="text-danger">*</span></label>
+                                            <select class="custom-select" required id="review-rating">
+                                                <option value="">Escoger la valoración</option>
+                                                <option value="5">5 estrellas</option>
+                                                <option value="4">4 estrellas</option>
+                                                <option value="3">3 estrellas</option>
+                                                <option value="2">2 estrellas</option>
+                                                <option value="1">1 estrellas</option>
+                                            </select>
+                                            <div class="invalid-feedback">¡Por favor escoge una valoración!</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="review-text">Descripción<span class="text-danger">*</span></label>
+                                            <textarea class="form-control" rows="6" required id="review-text"></textarea>
+                                            <div class="invalid-feedback">Por favor escriba una descripción!</div><small class="form-text text-muted">Al menos debe haber 50 caracteres.</small>
+                                        </div>
+                                        <button class="btn btn-primary btn-shadow btn-block" type="submit">Enviar valoración</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab comentarios -->
+                    <div class="tab-pane fade" id="comments" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p class="font-size-md">Descripción del producto</p>
+                                <h3 class="h5 pt-2">Características principales</h3>
+                                <ul class="font-size-md">
+                                    <li>Enviado a tu casa</li>
+                                    <li>Puedes pedir todas las cremas que desees</li>
+                                    <li>Puedes pedir todas las cremas que desees</li>
+                                    <li>Puedes pedir todas las cremas que desees</li>
+                                    <li>Puedes pedir todas las cremas que desees</li>
+                                    <li>Puedes pedir todas las cremas que desees</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Productos relacionados -->
+            <section class="pt-4">
+                <!-- Heading-->
+                <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
+                    <h2 class="h3 mb-0 pt-3 mr-3">Otros productos</h2>
+                    <div class="pt-3"><a class="btn btn-outline-accent btn-sm" onclick="fn_rtCategoria(0)">Más productos<i class="czi-arrow-right ml-1 mr-n1"></i></a></div>
+                </div>
+                <div class="cz-carousel cz-controls-static cz-controls-outside cz-dots-enabled pt-2">
+                    <div class="cz-carousel-inner"
+                         data-carousel-options="{&quot;items&quot;: 2,
+                         &quot;gutter&quot;: 16,
+                         &quot;controls&quot;: true,
+                         &quot;autoHeight&quot;: true,
+                         &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},
+                         &quot;480&quot;:{&quot;items&quot;:2}, &quot;720&quot;:{&quot;items&quot;:3},
+                         &quot;991&quot;:{&quot;items&quot;:2}, &quot;1140&quot;:{&quot;items&quot;:3},
+                         &quot;1300&quot;:{&quot;items&quot;:4}, &quot;1500&quot;:{&quot;items&quot;:5}}}">
+
+                        <!-- Productos -->
+                        @if (Enumerable.Count(ViewBag.lstProductoGeneral) > 0)
+                        {
+                            foreach (var item in ViewBag.lstProductoGeneral)
+                            {
+                                int surl = item.simagen1.Length - 1;
+                                <div>
+                                    <div class="card product-card card-static pb-3 text-center">
+                                        <button class="btn-wishlist btn-sm" type="button" data-toggle="tooltip" data-placement="left" title="Añadir a la lista de deseos">
+                                            <i class="czi-heart"></i>
+                                        </button>
+                                        <a class="card-img-top d-block overflow-hidden"
+                                           style="cursor:pointer;"
+                                           onclick="fn_rtDetalle(@item.ipromociontipo, @item.productoid);">
+                                            <img src="@item.simagen1.ToString().Substring(1, surl)"
+                                                 alt="Producto"
+                                                 style="height:200px !important;width:285px !important;background-size: cover;">
+                                        </a>
+                                        <div class="card-body py-2">
+                                            <a class="product-meta d-block font-size-xs pb-1" href="#">@item.scategoria</a>
+                                            <h3 class="product-title font-size-sm">
+                                                <a style="cursor:pointer;" onclick="fn_rtDetalle(@item.ipromociontipo, @item.productoid);">
+                                                    @item.snombre
+                                                </a>
+                                            </h3>
+                                            <div class="product-price">
+                                                <span class="text-accent" style="font-size:19px !important;">
+                                                    S/.&nbsp;@item.dprecio
+                                                    <!--<small>90</small>-->
+                                                </span>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <input type="hidden" id="hddCarrito_@item.productoid"
+                                               data-productoid="@item.productoid"
+                                               data-snombre="@item.snombre"
+                                               data-simagen="@item.simagen1"
+                                               data-ivendedor="@item.vendedorid"
+                                               data-icantidad=""
+                                               data-dprecio="@item.dprecio" />
+                                        <select id="slcCantidad" class="custom-select" style="display:none">
+                                            <option value="1">1</option>
+                                        </select>
+                                        <div class="product-floating-btn">
+                                            <button class="btn btn-primary btn-shadow btn-sm"
+                                                    onclick="fn_AgregarCarroCatalogo(@item.productoid);"
+                                                    type="button">
+                                                +<i class="czi-cart font-size-base ml-1"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <h3 class="product-title font-size-sm">¡Uh! Aún no hay productos en este catálogo...</h3>
+                        }
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <br>
+    </section>
+
+    <!-- Footer-->
+    <footer class="bg-dark pt-5">
+        <div class="px-lg-3 pt-2 pb-4">
+            <div class="mx-auto px-3" style="max-width: 80rem;">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-sm-4 pb-2 mb-4">
+                        <div class="mt-n1">
+                            <a class="d-inline-block align-middle" href="#">
+                                <h4 class="h4 text-white">Bel's Chicken</h4>
+                                <!-- <img class="d-block mb-4" width="117" src="img/footer-logo-light.png" alt="Cartzilla"/> -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Catálogo de Productos</h3>
+                            <ul class="widget-list">
+                                @if (Enumerable.Count(ViewBag.lstCategoria) > 0)
+                                {
+                                    foreach (var item in ViewBag.lstCategoria)
+                                    {
+                                        <li class="widget-list-item"><a class="widget-list-link" onclick="fn_rtCategoria(@item.categoriaid)" style="cursor:pointer">@item.sNombre</a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Empresa</h3>
+                            <ul class="widget-list">
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Acerca de nosotros</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Ubicación de la tienda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Tipo de puesto de trabajo</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Contacto</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Centro de Ayuda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Noticias</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Síguenos</h3><a class="social-btn sb-light sb-twitter mr-2 mb-2" href="#"><i class="czi-twitter"></i></a>
+                            <a class="social-btn sb-light sb-facebook mr-2 mb-2" href="#"><i class="czi-facebook"></i></a>
+                            <a class="social-btn sb-light sb-instagram mr-2 mb-2" href="#"><i class="czi-instagram"></i></a>
+                            <a class="social-btn sb-light sb-youtube mr-2 mb-2" href="#"><i class="czi-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-8">
+                        <div class="widget pb-2 mb-4">
+                            <h3 class="widget-title text-light pb-1">Mantente informado</h3>
+                            <div class="input-group input-group-overlay flex-nowrap">
+                                <div class="input-group-prepend-overlay"><span class="input-group-text text-muted font-size-base"><i class="czi-mail"></i></span></div>
+                                <input class="form-control prepended-form-control" type="email" value="" placeholder="tu correo" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Suscribirse*</button>
+                                </div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                            </div>
+                            <small class="form-text text-light opacity-50" id="mc-helper">*Suscríbete a los pedidos y recibe las mejores ofertas solo para ti.</small>
+                            <div class="subscribe-status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-darker px-lg-3 py-3">
+            <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" style="max-width: 80rem;">
+                <div class="font-size-xs text-light opacity-50 text-center text-sm-left py-3">
+                    © Todos los derechos reservador. Hecho por
+                    <a class="text-light" href="#" target="_blank" rel="noopener">Crivant Studio</a>
+                </div>
+                <div class="py-3">
+                    <img class="d-block mx-auto mx-sm-left" width="187" src="~/Content/img/cards-alt.png" alt="Payment methods" />
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+@section scripts{
+    <script>
+
+        function fn_CargarEspecificacion(wproductoid) {
+            $.ajax({
+                type: "POST",
+                url: gRoute + "index/ListarEspecificacion",
+                data: {
+                    "wproductoid": wproductoid
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+            if (window.matchMedia('(min-width: 320px)').matches && window.matchMedia('(max-width: 480px)').matches) {
+                $('#ttab1').html("C-19");
+                $('#ttab2').html("Valorar");
+                $('#ttab3').html("Detalle");
+            }
+
+            var gwproducto = $('#inproductoid').val();
+            fn_CargarEspecificacion(gwproducto);
+
+        });
+
+        $('#spnVideo').click(function () {
+            $('#lg-actual-size').css("display", "none");
+            $('#lg-zoom-in').css("display", "none");
+            $('#lg-zoom-out').css("display", "none");
+        });
+
+    </script>
+}

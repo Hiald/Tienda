@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Categóría";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+<style>
+    .dataTables_paginate {
+        float: right !important;
+    }
+</style>
+<!-- Page title-->
+<div class="border-bottom mt-lg-2 pt-5 pb-2 mb-3">
+    <h3 class="mt-lg-2 pl-lg-3 pt-lg-5 h3">Gestión de categorías</h3>
+</div>
+
+<div class="container pull-up mt-5">
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria">
+            Nueva Categoría
+        </button>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblCategoria" class="table" style="width:100%">
+                            <colgroup>
+                                <col width="35%" />
+                                <col width="35%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Icono</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Registrar -->
+<div class="modal fade" id="modalCategoria" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar Categoría</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm1">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txNombre">Nombre de la categoria</label>
+                            <input class="form-control" type="text" id="txNombre" placeholder="ejemplo: Frutas y verduras" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcIcono">Ícono:  <i class="" id="iIcono" style="font-size: 22px"></i></label>
+                            <select class="form-control custom-select" id="slcIcono" required>
+                                <option value="">Seleccione un ícono</option>
+                                <option value="czi-add-circle">Circulo</option>
+                                <option value="czi-arrow-right">Ícono por defecto</option>
+                                <option value="czi-play">Play</option>
+                                <option value="czi-chili">Chilli</option>
+                                <option value="czi-canned-food">Bolsa de comida</option>
+                                <option value="czi-toothbrush">Cepillo de dientes</option>
+                                <option value="czi-broccoli">Brocoli</option>
+                                <option value="czi-sauce">Botella</option>
+                                <option value="czi-toilet-paper">Papel higiénico</option>
+                                <option value="czi-lemon">Limón</option>
+                                <option value="czi-bread">Pan</option>
+                                <option value="czi-fish">Pescado</option>
+                                <option value="czi-wine">Vino</option>
+                                <option value="czi-eggs">Huevos</option>
+                                <option value="czi-store">Tienda</option>
+                                <option value="czi-ham-leg">Carne</option>
+                                <option value="czi-milk">Leche</option>
+                                <option value="czi-avocado">Palta</option>
+                                <option value="czi-pizza">Pizza</option>
+                                <option value="czi-carrot">Zanahoria</option>
+                                <option value="czi-pot">Olla</option>
+                                <option value="czi-ice-cream">Helado</option>
+                                <option value="czi-lollipop">Dulces</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione un ícono.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrar" onclick="fn_Limpiar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardar" onclick="fn_Registrar()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="modalEditarCategoria" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idcategoria="" id="hddcategoria" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Categoría</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txNombreEditar">Nombre de la categoria</label>
+                            <input class="form-control" type="text" id="txNombreEditar" placeholder="ejemplo: Frutas y verduras" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcIconoEditar">Ícono:  <i class="" id="iIconoEditar" style="font-size: 22px"></i></label>
+                            <select class="form-control custom-select" id="slcIconoEditar" required>
+                                <option value="">Seleccione un ícono</option>
+                                <option value="czi-add-circle">Circulo</option>
+                                <option value="czi-arrow-right">Ícono por defecto</option>
+                                <option value="czi-play">Play</option>
+                                <option value="czi-chili">Chilli</option>
+                                <option value="czi-canned-food">Bolsa de comida</option>
+                                <option value="czi-toothbrush">Cepillo de dientes</option>
+                                <option value="czi-broccoli">Brocoli</option>
+                                <option value="czi-sauce">Botella</option>
+                                <option value="czi-toilet-paper">Papel higiénico</option>
+                                <option value="czi-lemon">Limón</option>
+                                <option value="czi-bread">Pan</option>
+                                <option value="czi-fish">Pescado</option>
+                                <option value="czi-wine">Vino</option>
+                                <option value="czi-eggs">Huevos</option>
+                                <option value="czi-store">Tienda</option>
+                                <option value="czi-ham-leg">Carne</option>
+                                <option value="czi-milk">Leche</option>
+                                <option value="czi-avocado">Palta</option>
+                                <option value="czi-pizza">Pizza</option>
+                                <option value="czi-carrot">Zanahoria</option>
+                                <option value="czi-pot">Olla</option>
+                                <option value="czi-ice-cream">Helado</option>
+                                <option value="czi-lollipop">Dulces</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione un ícono.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrar" onclick="fn_LimpiarEditar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardar" onclick="fn_Actualizar()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="modalEliminarCategoria" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idcategoriaEliminar="" id="hddcategoriaEliminar" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm3">
+                <div class="modal-body">
+                    <h5 class="h5">¿Desea eliminar la categoría?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrar">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardar" onclick="fn_ConfimarEliminar()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $('#frm1').submit(false);
+        $('#frm2').submit(false);
+        $('#frm3').submit(false);
+
+        $('#slcIcono').on('change', function () {
+            var valorslc = $('#slcIcono option:selected').attr('value');
+            $('#iIcono').removeClass();
+            $('#iIcono').addClass(valorslc);
+        });
+
+        $('#slcIconoEditar').on('change', function () {
+            var valorslc = $('#slcIconoEditar option:selected').attr('value');
+            $('#iIconoEditar').removeClass();
+            $('#iIconoEditar').addClass(valorslc);
+        });
+
+    </script>
+    <script src="~/Content/src/categoria/listado.js"></script>
+}

@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "Resultado";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MuoMarket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/src/index/bootstrap.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/img/index/tienda.png">
+    @* borrarhttps://fonts.googleapis.com/css?family=Roboto:400%7CPoppins:700%2C400 *@
+    <link href="~/Content/src/index/cssfont.css" rel="stylesheet" property="stylesheet" media="all" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/src/index/animate.css">
+    <link href="~/Content/src/resmuo/datatable.css" rel="stylesheet" />
+</head>
+<body>
+
+    <main class="admin-main">
+        <section class="admin-content">
+            <br />
+            <h4 class="h4 text-center">Gente registrada</h4>
+            <br />
+
+            <div class="container  pull-up">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive p-t-10">
+                                    <table id="tblVenta" class="table" style="width:100%">
+                                        <colgroup>
+                                            @*<col width="10%" />*@
+                                            <col width="20%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                @* <th>Tienda</th>*@
+                                                <th>Nombre</th>
+                                                <th>Celular</th>
+                                                <th>Tipo de negocio</th>
+                                                <th>RUC</th>
+                                                <th>Direccion</th>
+                                                <th>Departamento</th>
+                                                <th>Correo</th>
+                                                <th>Fecha registro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="~/Content/src/index/jquery.js"></script>
+    <script src="~/Content/src/index/popper.min.js"></script>
+    <script src="~/Content/src/index/bootstrap.min.js"></script>
+    <script src="~/Content/src/resmuo/datatable.js"></script>
+
+    <script>
+       var vgruta = "@Url.Content("~")";
+
+
+        var datourl = window.location.pathname;
+        var rutaservidor = window.location.host;
+
+        $(document).ready(function () {
+
+            function fn_util_obtieneNroPagina(iDisplayStart, iDisplayLength) {
+                var start = (iDisplayStart == 0 ? 1 : iDisplayStart);
+                return (start / iDisplayLength) + 1;
+            }
+
+            function fn_util_AjaxWM_Obj(pstrMetodo, pParam, successFn, errorFn) {
+                var oParametros = JSON.stringify(pParam);
+
+                var parametro = '';
+                if (oParametros == '') {
+                    parametro = "{}";
+                } else {
+                    parametro = oParametros;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: pstrMetodo,
+                    contentType: "application/json; charset=utf-8",
+                    data: parametro,
+                    dataType: "json",
+                    async: true,
+                    success: function (data) {
+                        successFn(data);
+                    },
+                    error: errorFn
+                });
+
+            }
+
+             $('#tblVenta').dataTable({
+                "responsive": {
+                    "details": true,
+                    "columnDefs": [
+                        { "responsivePriority": 1 },
+                        { "responsivePriority": 2 },
+                        { "responsivePriority": 3 }
+                    ]
+                },
+                "bServerSide": true,
+                "sAjaxSource": vgruta + 'landing/ListarVenta',
+                "bProcessing": true,
+                "sPaginationType": "full_numbers",
+                "bFilter": false,
+                "bSort": false,
+                "language": {
+                    "infoEmpty": "",
+                    "infoFiltered": "(resultado de _MAX_ registros totales)",
+                    "emptyTable": "No se encontraron registros",
+                    "sZeroRecords": "No se encontraron registros.",
+                    "processing": "Cargando. Por favor espere...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "sSearch": "Buscar:"
+                },
+                "bLengthChange": false,
+                "fnDrawCallback": function (oSettings) {
+                },
+                "aoColumns": [
+                    //{ "sName": "nombretienda", "mDataProp": "nombretienda" },
+                    { "sName": "nombre", "mDataProp": "nombre" },
+                    { "sName": "celular", "mDataProp": "celular" },
+                    {},
+                    { "sName": "ruc", "mDataProp": "ruc" },
+                    { "sName": "direccion", "mDataProp": "direccion" },
+                    {},
+                    { "sName": "correo", "mDataProp": "correo" },
+                    { "sName": "fechareg", "mDataProp": "fechareg" }
+                ],
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    var sEcho = aoData[0].value;
+                    var iNroPagina = 1;
+                    var iCantMostrar = 1;
+
+                    var sParams = {
+                        "iNumeroPagina": iNroPagina,
+                        "iTotalPagina": iCantMostrar
+                    }
+
+                    oSettings.jqXHR = fn_util_AjaxWM_Obj(
+                        sSource,
+                        sParams,
+                        function (result) {
+                            fnCallback(result);
+                        }, function (error) {
+                            console.log(error);
+                        });
+                }, "aoColumnDefs":
+                    [
+                        {
+                            "mRender": function (data, type, row) {
+                                var strHtml = "<a>";
+
+                                /*if (row.tiponegocio == 1) {
+                                    strHtml += "Bodega";
+                                }else if (row.tiponegocio == 2) {
+                                    strHtml += "Restaurante";
+                                } else if (row.tiponegocio == 3) {
+                                    strHtml += "Minimarket";
+                                } else if (row.tiponegocio == 4) {
+                                    strHtml += "Carnicería";
+                                } else if (row.tiponegocio == 5) {
+                                    strHtml += "Almacén";
+                                } else if (row.tiponegocio == 6) {
+                                    strHtml += "Verdulería";
+                                } else if (row.tiponegocio == 7) {
+                                    strHtml += "Panadería";
+                                } else if (row.tiponegocio == 8) {
+                                    strHtml += "Ferreteria";
+                                } else if (row.tiponegocio == 9) {
+                                    strHtml += "Otros";
+                                }*/
+
+                                return strHtml;
+                            },
+                            "sWidth": "5px",
+                            "sClass": "css-center",
+                            "bSort": false,
+                            "aTargets": [2]
+                        },
+                        {
+                            "mRender": function (data, type, row) {
+                                var strHtml = "<a>";
+
+                                switch (row.departamento) {
+                                    case 1: strHtml += "ATE"; break;
+                                    case 2: strHtml = "BARRANCO"; break;
+                                    case 3: strHtml = "CERCADO DE LIMA"; break;
+                                    case 4: strHtml = "CHORRILLOS"; break;
+                                    case 5: strHtml = "CIENEGUILLA"; break;
+                                    case 6: strHtml = "COMAS"; break;
+                                    case 7: strHtml = "EL AGUSTINO"; break;
+                                    case 8: strHtml = "INDEPENDENCIA"; break;
+                                    case 9: strHtml = "JESUS MARIA"; break;
+                                    case 10: strHtml = "LA MOLINA"; break;
+                                    case 11: strHtml = "LA VICTORIA"; break;
+                                    case 12: strHtml = "LINCE"; break;
+                                    case 13: strHtml = "LOS OLIVOS"; break;
+                                    case 14: strHtml = "LURIN"; break;
+                                    case 15: strHtml = "MAGDALENA DEL MAR"; break;
+                                    case 16: strHtml = "PUEBLO LIBRE"; break;
+                                    case 17: strHtml = "MIRAFLORES"; break;
+                                    case 18: strHtml = "RIMAC"; break;
+                                    case 19: strHtml = "SAN BORJA"; break;
+                                    case 20: strHtml = "SAN ISIDRO"; break;
+                                    case 21: strHtml = "SAN JUAN DE LURIGANCHO"; break;
+                                    case 22: strHtml = "SAN JUAN DE MIRAFLORES"; break;
+                                    case 23: strHtml = "SAN LUIS"; break;
+                                    case 24: strHtml = "SAN MARTIN DE PORRES"; break;
+                                    case 25: strHtml = "SAN MIGUEL"; break;
+                                    case 26: strHtml = "SANTA ANITA"; break;
+                                    case 27: strHtml = "SANTIAGO DE SURCO"; break;
+                                    case 28: strHtml = "SURQUILLO"; break;
+                                    case 29: strHtml = "VILLA EL SALVADOR"; break;
+                                    case 30: strHtml = "VILLA MARIA DEL TRIUNFO"; break;
+                                    case 31: strHtml = "ANCON"; break;
+                                    case 32: strHtml = "CARABAYLLO"; break;
+                                    case 33: strHtml = "CHACLACAYO"; break;
+                                    case 34: strHtml = "PACHACAMAC"; break;
+                                    case 35: strHtml = "PUCUSANA"; break;
+                                    case 36: strHtml = "PUENTE PIEDRA"; break;
+                                    case 37: strHtml = "PUNTA HERMOSA"; break;
+                                    case 38: strHtml = "PUNTA NEGRA"; break;
+                                    case 39: strHtml = "SAN BARTOLO"; break;
+                                    case 40: strHtml = "SANTA MARIA DEL MAR"; break;
+                                    case 41: strHtml = "SANTA ROSA"; break;
+                                    case 42: strHtml = "CHOSICA (LURIGANCHO)"; break;
+                                    case 43: strHtml = "BREÑA"; break;
+                                    case 44: strHtml = "FUERA DE LIMA"; break;
+                                    }
+
+                                return strHtml + "</a>";
+                            },
+                            "sWidth": "5px",
+                            "sClass": "css-center",
+                            "bSort": false,
+                            "aTargets": [5]
+                        }
+                    ]
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

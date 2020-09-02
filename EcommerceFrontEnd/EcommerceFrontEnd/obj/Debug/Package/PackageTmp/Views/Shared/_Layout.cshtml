@@ -1,0 +1,756 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tienda virtual</title>
+
+    <meta name="description" content="Bel's Chicken - E-commerce">
+    <meta name="keywords" content="shop, e-commerce, market, modern, responsive, business, mobile, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
+    <meta name="author" content="Crivant Studio">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/img/index/tienda.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    
+
+    <link rel="stylesheet" media="screen" href="~/Content/css/vendor.min.css">
+    <link rel="stylesheet" media="screen" id="main-styles" href="~/Content/css/theme.min.css">
+    <script>
+        var gRoute = "@Url.Content("~")";
+        var dataUrl = window.location.pathname;
+        var RouteServer = window.location.host;
+    </script>
+</head>
+<!-- Body-->
+<body class="bg-secondary">
+    <input type="hidden" value="@ViewBag.BValorCuenta" id="hddvalorCuenta" />
+
+    <!-- Iniciar sesion / registarse modal-->
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true">
+                                <i class="czi-unlocked mr-2 mt-n1"></i>Iniciar sesión
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false">
+                                <i class="czi-user mr-2 mt-n1"></i>Regístrate
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body tab-content py-4">
+                    <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                        <div class="form-group">
+                            <label for="si-email">Correo electrónico</label>
+                            <input class="form-control" type="email" id="si-email" placeholder="micorreo@ejemplo.com" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="si-password">Clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="si-password" required maxlength="15">
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i>
+                                    <span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-wrap justify-content-between">
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="si-remember">
+                                <label class="custom-control-label" for="si-remember">Recordar</label>
+                            </div><a class="font-size-sm">¿Olvidaste tu clave?</a>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-shadow" id="btnInicio">Iniciar sesión</button>
+                    </form>
+
+                    <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                        <div class="form-group">
+                            <label for="su-name">Nombre</label>
+                            <input class="form-control" type="text" id="su-name" placeholder="Mi nombre" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su nombre.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-lastname">Apellido</label>
+                            <input class="form-control" type="text" id="su-lastname" placeholder="Mi apellido" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su apellido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-email">Correo electrónico</label>
+                            <input class="form-control" type="email" id="su-email" placeholder="micorreo@ejemplo.com" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-password">Clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="su-password" required>
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox" maxlength="15">
+                                    <i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-password-confirm">Confirmar clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="su-password-confirm" required>
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox" maxlength="15">
+                                    <i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-shadow" id="btnNuevo">Registrarme</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cerrar sesion modal -->
+    <div class="modal fade" id="account-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#miaccount-tab" data-toggle="tab" role="tab" aria-selected="true">
+                                <i class="czi-unlocked mr-2 mt-n1"></i>Mi cuenta
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body tab-content py-4">
+                    <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="miaccount-tab">
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary btn-block btn-shadow" id="btnPedidos" onclick="fn_Mipedido(0);">Mis pedidos</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-secondary btn-block btn-shadow" id="btnCerrar">Cerrar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar-->
+    <header class="bg-light box-shadow-sm fixed-top">
+        <div class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand d-none d-sm-block mr-3 mr-xl-4 flex-shrink-0" href="@Url.Action("index", "index")" style="min-width: 7rem;">
+                    <h2 class="h2">Bel's Chicken</h2>
+                    <!-- <img width="142" src="img/logo-dark.png" alt="Cartzilla"/> -->
+                </a><a class="navbar-brand d-sm-none mr-2" href="@Url.Action("index", "index")" style="min-width: 4.625rem;">
+                    @*<img width="74" src="~/Content/img/index/tienda.png" alt="empresa" />*@
+                    <h6 class="h6" href="~/Views/index/Index.cshtml">Bel's Chicken</h6>
+                </a>
+                <!-- Search-->
+                <div class="input-group-overlay d-none d-lg-block mx-4">
+                    <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-search"></i></span></div>
+                    <input class="form-control prepended-form-control appended-form-control" type="text" placeholder="Buscar por producto" id="ipBuscarProducto">
+                    <div class="input-group-append-overlay">
+                        <select class="custom-select" id="slcCategoria" onchange="fn_rtCategoriaSV();">
+                            <option value="0">Categorías</option>
+                            @if (Enumerable.Count(ViewBag.lstCategoria) > 0)
+                            {
+                                foreach (var item in ViewBag.lstCategoria)
+                                {
+                                    <option value="@item.categoriaid">@item.sNombre</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <!-- Toolbar-->
+                <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ml-xl-2">
+                    <a class="navbar-toggler" href="#sideNav" data-toggle="sidebar"><span class="navbar-toggler-icon"></span></a>
+                    <a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox">
+                        <span class="navbar-tool-tooltip">Buscar</span>
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-search"></i></div>
+                    </a><a class="navbar-tool d-none d-lg-flex" href="#">
+                        <span class="navbar-tool-tooltip">Lista de deseos</span>
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-heart"></i></div>
+                    </a>
+                    <a class="navbar-tool ml-1 ml-lg-0 mr-n1 mr-lg-2" href="@ViewBag.iValorCuenta" data-toggle="modal">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-user"></i></div>
+                        <div class="navbar-tool-text ml-n3"><small>@ViewBag.sNombre</small>@ViewBag.sTextoMenu</div>
+                    </a>
+                    <div class="navbar-tool dropdown ml-3" id="divCarrito">
+                        <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="@Url.Action("listado", "carrito")">
+                            <span class="navbar-tool-label" id="ccantidad"></span>
+                            <i class="navbar-tool-icon czi-cart"></i>
+                        </a>
+                        <a class="navbar-tool-text" id="ctotal">
+                            <!-- <small>Mi carrito</small> -->
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" style="width: 20rem;">
+                            <div class="widget widget-cart px-3 pt-2 pb-3">
+                                <!-- cada item es 5rem, o sea si son 3 productos = 15rem -->
+                                <div style="height: 0px;" data-simplebar data-simplebar-auto-hide="false" id="body-producto">
+
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                                    <div class="font-size-sm mr-2 py-2">
+                                        <span class="text-muted">Total:</span>
+                                        <span class="text-accent font-size-base ml-1" id="cgeneralTotal"></span>
+                                    </div>
+                                    <a class="btn btn-outline-secondary btn-sm" href="@Url.Action("listado", "carrito")">
+                                        Ver Carrito
+                                        <i class="czi-arrow-right ml-1 mr-n1"></i>
+                                    </a>
+                                </div>
+                                <a class="btn btn-primary btn-sm btn-block" id="btnPago2">
+                                    <i class="czi-card mr-2 font-size-base align-middle"></i>Pagar<i class="czi-arrow-right ml-1 mr-n1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search collapse-->
+        <div class="collapse" id="searchBox">
+            <div class="card pt-2 pb-4 border-0 rounded-0">
+                <div class="container">
+                    <div class="input-group-overlay">
+                        <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-search"></i></span></div>
+                        <input class="form-control prepended-form-control" type="text" placeholder="Buscar productos" id="ipBuscarProductoM">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- menu categoria -->
+    <aside class="cz-sidebar cz-sidebar-fixed" id="sideNav" style="padding-top: 5rem;">
+        <button class="close" type="button" data-dismiss="sidebar" aria-label="Close">
+            <span class="d-inline-block font-size-xs font-weight-normal align-middle">Cerrar</span>
+            <span class="d-inline-block align-middle ml-2" aria-hidden="true">&times;</span>
+        </button>
+        <div class="cz-sidebar-inner">
+            <ul class="nav nav-tabs nav-justified mt-2 mt-lg-4 mb-0" role="tablist" style="min-height: 3rem;">
+                <li class="nav-item"><a class="nav-link font-weight-medium active" href="#categories" data-toggle="tab" role="tab">Categorías</a></li>
+            </ul>
+            <div class="cz-sidebar-body pt-3 pb-0" data-simplebar>
+                <div class="tab-content">
+                    <!-- Categorias-->
+                    <div class="sidebar-nav tab-pane fade show active" id="categories" role="tabpanel">
+                        <div class="widget widget-categories">
+                            <div class="accordion" id="shop-categories">
+
+                                @if (Enumerable.Count(ViewBag.lstCategoria) > 0)
+                                {
+                                    foreach (var item in ViewBag.lstCategoria)
+                                    {
+                                        <div class="card border-bottom">
+                                            <div class="card-header" onclick="fn_rtCategoria(@item.categoriaid)" id="divmenu" data-idcat="@item.categoriaid">
+                                                <h3 class="accordion-heading font-size-base px-grid-gutter menu">
+                                                    <a class="collapsed py-3" style="cursor:pointer">
+                                                        <span class="d-flex align-items-center">
+                                                            <i class="@item.sIconoCodigo font-size-lg text-danger mt-n1 mr-2"></i>@item.sNombre
+                                                        </span>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    @RenderBody()
+
+    <!-- Back To Top Button-->
+    <a class="btn-scroll-top" href="#top" data-scroll>
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Arriba</span>
+        <i class="btn-scroll-top-icon czi-arrow-up"></i>
+    </a>
+
+    <div class="toast-container toast-top-left">
+        <div class="toast mb-3" id="cart-infempty" data-delay="4000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-info text-white">
+                <i class="czi-check-circle mr-2"></i>
+                <h6 class="font-size-sm text-white mb-0 mr-auto">Información</h6>
+                <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">No hay productos en el carrito, ¡Agrega algunos!</div>
+        </div>
+    </div>
+
+    <div class="toast-container toast-bottom-left">
+        <div class="toast mb-3" id="cart-toast" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="czi-check-circle mr-2"></i>
+                <h6 class="font-size-sm text-white mb-0 mr-auto">Agregado al carrito!</h6>
+                <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">¡Agregado al carrito de compras!</div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAddCart" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" role="tab" aria-selected="true">
+                                <i class="czi-cart mr-2 mt-n1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-body tab-content py-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <h6 class="h6">Agregando al carrito</h6>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/js/vendor.min.js"></script>
+    <script src="~/Content/js/theme.min.js"></script>
+    <script src="~/Content/js/numeral.min.js"></script>
+
+    <script>
+
+        $('#signin-tab').submit(false);
+        $('#signup-tab').submit(false);
+        $('#miaccount-tab').submit(false);
+
+        $('#btnPago2').click(function () {
+            var hddValorCuenta = $('#hddvalorCuenta').val();
+            let productoCarrito = JSON.parse(localStorage.getItem('ss_productosCarrito')) || [];
+            if (productoCarrito.length === 0) {
+                $('#cart-infempty').toast("show");
+            } else {
+                if (hddValorCuenta === "1") {
+
+                    $('#signin-modal').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true
+                    });
+                } else {
+                    fn_PayProduct();
+                }
+            }
+
+        });
+
+        function fnRouteMain() {
+        location.replace('@Url.Action("index", "Index")');
+        }
+
+        function fn_PayProduct() {
+        location.replace('@Url.Action("pago", "venta")');
+        }
+
+        function fn_Mipedido() {
+        location.replace('@Url.Action("pedido", "index")');
+        }
+
+        function fn_rtCategoriaSV() {
+            var fnRoute = gRoute + "index/producto";
+
+            var selectBox = document.getElementById("slcCategoria");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+            var idcategoria = selectedValue;
+            var form = '<input type="hidden" name="' + "categoriaid" + '" value="' + idcategoria + '">';
+            $('<form action="' + fnRoute + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+        }
+
+        function fn_rtCategoria(fp_categoriaid) {
+            var fnRoute = gRoute + "index/producto";
+
+            var idcategoria = fp_categoriaid;
+            var form = '<input type="hidden" name="' + "categoriaid" + '" value="' + idcategoria + '">';
+            $('<form action="' + fnRoute + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+        }
+
+        function fn_rtDetalle(fp_itipoPromocion, fp_icategoriaID) {
+            var fnRoute = gRoute + "index/detalle";
+
+            var itipoPromocion = fp_itipoPromocion;
+            var icategoriaID = fp_icategoriaID;
+            var form = '<input type="hidden" name="' + "wtipoPromocion" + '" value="' + itipoPromocion + '">'
+            + '<input type="hidden" name="' + "wproductoid" + '" value="' + icategoriaID + '">';
+            $('<form action="' + fnRoute + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+        }
+
+        // -------------------------------------- //
+
+        function fn_AgregarCarroCatalogo(productoId) {
+
+            $('#modalAddCart').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+
+            var slcCantidad = 1;
+            $('#hddCarrito_' + productoId).attr('data-icantidad', slcCantidad);
+
+            var dproductoid = parseInt($('#hddCarrito_' + productoId).attr('data-productoid'));
+            var dvendedorid = parseInt($('#hddCarrito_' + productoId).attr('data-ivendedor'));
+            var dnombre = $('#hddCarrito_' + productoId).attr('data-snombre');
+            var dimagen = $('#hddCarrito_' + productoId).attr('data-simagen');
+            var dcantidad = parseInt($('#hddCarrito_' + productoId).attr('data-icantidad'));
+            var dprecio = $('#hddCarrito_' + productoId).attr('data-dprecio');
+
+            //cambio de decimal a entero
+            dprecio = dprecio * 100;
+
+            var multiplicacionPC = dcantidad * dprecio;
+            let productoCarrito = JSON.parse(localStorage.getItem('ss_productosCarrito')) || [];
+
+            const existeProductoId = productoCarrito.find(({ ctProductoId }) => ctProductoId === dproductoid);
+            if (existeProductoId) {
+                Object.assign(existeProductoId, {
+                    'ctProductoId': dproductoid,
+                    'ctVendedorId': dvendedorid,
+                    'ctNombre': dnombre,
+                    'ctImagen': dimagen,
+                    'ctCantidad': existeProductoId.ctCantidad + dcantidad,
+                    'ctPrecio': existeProductoId.ctPrecio + multiplicacionPC,
+                    'ctPrecioInicial': dprecio
+                });
+            } else {
+                const nuevoItem = {
+                    'ctProductoId': dproductoid,
+                    'ctVendedorId': dvendedorid,
+                    'ctNombre': dnombre,
+                    'ctImagen': dimagen,
+                    'ctCantidad': dcantidad,
+                    'ctPrecio': dprecio * dcantidad,
+                    'ctPrecioInicial': dprecio
+                };
+                productoCarrito.push(nuevoItem);
+            }
+
+            localStorage.setItem('ss_productosCarrito', JSON.stringify(productoCarrito));
+
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+
+            setTimeout(function () {
+                $('#modalAddCart').modal("hide");
+                $('#cart-toast').toast("show");
+            }, 1000);
+
+        }
+
+        function fn_AgregarCarro() {
+
+            $('#modalAddCart').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+
+            var slcCantidad = $('#slcCantidad option:selected').attr('value');
+            $('#hddCarrito').attr('data-icantidad', slcCantidad);
+
+            var dproductoid = parseInt($('#hddCarrito').attr('data-productoid'));
+            var dvendedorid = parseInt($('#hddCarrito').attr('data-ivendedor'));
+            var dnombre = $('#hddCarrito').attr('data-snombre');
+            var dimagen = $('#hddCarrito').attr('data-simagen');
+            var dcantidad = parseInt($('#hddCarrito').attr('data-icantidad'));
+            var dprecio = $('#hddCarrito').attr('data-dprecio');
+
+            //generar monto en entero
+            dprecio = dprecio * 100;
+
+            var multiplicacionPC = dcantidad * dprecio;
+            let productoCarrito = JSON.parse(localStorage.getItem('ss_productosCarrito')) || [];
+
+            const existeProductoId = productoCarrito.find(({ ctProductoId }) => ctProductoId === dproductoid);
+            if (existeProductoId) {
+                Object.assign(existeProductoId, {
+                    'ctProductoId': dproductoid,
+                    'ctVendedorId': dvendedorid,
+                    'ctNombre': dnombre,
+                    'ctImagen': dimagen,
+                    'ctCantidad': existeProductoId.ctCantidad + dcantidad,
+                    'ctPrecio': existeProductoId.ctPrecio + multiplicacionPC,
+                    'ctPrecioInicial': dprecio
+                });
+            } else {
+                const nuevoItem = {
+                    'ctProductoId': dproductoid,
+                    'ctVendedorId': dvendedorid,
+                    'ctNombre': dnombre,
+                    'ctImagen': dimagen,
+                    'ctCantidad': dcantidad,
+                    'ctPrecio': dprecio * dcantidad,
+                    'ctPrecioInicial': dprecio
+                };
+                productoCarrito.push(nuevoItem);
+            }
+
+            localStorage.setItem('ss_productosCarrito', JSON.stringify(productoCarrito));
+
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+
+            setTimeout(function () {
+                $('#modalAddCart').modal("hide");
+                $('#cart-toast').toast("show");
+            }, 1000);
+        }
+
+        function fn_GenerarMonto() {
+            var sumatotal = 0;
+
+            let productoCarrito = JSON.parse(localStorage.getItem('ss_productosCarrito')) || [];
+
+            if (productoCarrito.length === 0) {
+                $('#ctotal').html("<small>Mi carrito</small> S/. 0.00");
+                $('#ccantidad').html("0");
+                $('#cgeneralTotal').html("S/. 0.00");
+            } else {
+                $.each(productoCarrito, function (index, value) {
+                    sumatotal = sumatotal + value.ctPrecio;
+                });
+                $('#cgeneralTotal').html("S/. 0.00");
+                $('#ctotal').html("");
+                $('#ctotal').html("<small>Mi carrito</small> S/. " + (sumatotal / 100).toFixed(2));
+                $('#ccantidad').html("");
+                $('#ccantidad').html(JSON.parse(localStorage.getItem('ss_productosCarrito')).length);
+                $('#cgeneralTotal').html("S/. " + (sumatotal / 100).toFixed(2));
+            }
+        }
+
+        function fn_GenerarCarritoHTML() {
+            $('#body-producto').html("");
+
+            let productoCarrito = JSON.parse(localStorage.getItem('ss_productosCarrito')) || [];
+
+            if (productoCarrito.length === 0) {
+                $('#body-producto').css('height', '0px');
+            } else {
+                $('#body-producto').css('height', '0px');
+                $.each(productoCarrito, function (index, value) {
+
+                    var heightActual = $('#body-producto').height();
+                    if (heightActual == 0) {
+                        $('#body-producto').css('height', '80px');
+                    }
+
+                    if (heightActual < 400) {
+                        $('#body-producto').css('height', (heightActual + 80) + 'px');
+                    }
+
+                    if (index == 0) {
+                        $('#body-producto').html(
+                            '<div class="widget-cart-item py-2 border-bottom" style="overflow-x:hidden">' +
+                            '<button class="close text-danger" type="button" aria-label="Remove" onclick="fn_RemoverCarro(' + value.ctProductoId + ')">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '<div class="media align-items-center">' +
+                            '<a class="d-block mr-2" href="#">' +
+                            '<img width="64" src="' + value.ctImagen.slice(1, value.ctImagen.length) + '" alt="Producto" />' +
+                            '</a>' +
+                            '<div class="media-body">' +
+                            '<h6 class="widget-product-title"><a href="#">' + value.ctNombre + '</a></h6>' +
+                            '<div class="widget-product-meta">' +
+                            '<span class="text-accent mr-2"> S/. ' + (value.ctPrecioInicial / 100).toFixed(2) + '</span>' +
+                            '<span class="text-muted">x' + value.ctCantidad + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    } else {
+                        $('#body-producto').append(
+                            '<div class="widget-cart-item py-2 border-bottom" style="overflow-x:hidden">' +
+                            '<button class="close text-danger" type="button" aria-label="Remove" onclick="fn_RemoverCarro(' + value.ctProductoId + ')">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '<div class="media align-items-center">' +
+                            '<a class="d-block mr-2" href="#">' +
+                            '<img width="64" src="' + value.ctImagen.slice(1, value.ctImagen.length) + '" alt="Producto" />' +
+                            '</a>' +
+                            '<div class="media-body">' +
+                            '<h6 class="widget-product-title"><a href="#">' + value.ctNombre + '</a></h6>' +
+                            '<div class="widget-product-meta">' +
+                            '<span class="text-accent mr-2"> S/. ' + (value.ctPrecioInicial / 100).toFixed(2) + '</span>' +
+                            '<span class="text-muted">x' + value.ctCantidad + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    }
+
+
+
+                });
+            }
+        }
+
+        function fn_RemoverCarro(productoId) {
+
+            let storageProducts = JSON.parse(localStorage.getItem('ss_productosCarrito'));
+            let products = storageProducts.filter(product => product.ctProductoId !== productoId);
+            localStorage.setItem('ss_productosCarrito', JSON.stringify(products));
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+        }
+
+        // -------------------------------------- //
+        $('#ipBuscarProducto').on('keypress', function (e) {
+            if (e.which == 13) {
+                console.log("buscar producto");
+            }
+        });
+
+        $('#ipBuscarProductoM').on('keypress', function (e) {
+            if (e.which == 13) {
+                console.log("buscar producto");
+            }
+        });
+
+        $('#btnNuevo').click(function () {
+
+            var txNombre = $('#su-name').val();
+            var txApellido = $('#su-lastname').val();
+            var txCorreo = $('#su-email').val();
+            var txClave = $('#su-password').val();
+            var txClaveConfirmar = $('#su-password-confirm').val();
+
+            var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+            if (txClave.length < 7) {
+                alert("La clave debe tener al menos 7 caracteres");
+                return;
+            }
+
+            if (txClave === txClaveConfirmar) {
+                if (testEmail.test(txCorreo)) {
+                    $.ajax({
+                        type: "POST",
+                        url: gRoute + "usuario/registrarusuario",
+                        //contentType: "application/json; charset=utf-8",
+                        data: {
+                            "wnombre": txNombre,
+                            "wapellido": txApellido,
+                            "wcorreo": txCorreo,
+                            "wclave": txClave
+                        },
+                        //dataType: "json",
+                        //async: true,
+                        success: function (data) {
+                            if (data.iResultado === -2) {
+                                alert(data.iResultadoIns);
+                            } else if (data.iResultado === -1) {
+                                alert(data.iResultadoIns);
+                            } else if (data.iResultado === 1) {
+                                fnRouteMain();
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+                } else {
+                    alert("por favor, ingrese un correo válido");
+                }
+            } else {
+                alert("Las contraseñas no coinciden");
+                return;
+            }
+
+        });
+
+        $('#btnInicio').click(function () {
+            var txCorreo = $('#si-email').val();
+            var txClave = $('#si-password').val();
+            var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+            if (testEmail.test(txCorreo)) {
+                $.ajax({
+                    type: "POST",
+                    url: gRoute + "usuario/loginusuario",
+                    //contentType: "application/json; charset=utf-8",
+                    data: {
+                        "wcorreo": txCorreo,
+                        "wclave": txClave
+                    },
+                    //dataType: "json",
+                    //async: true,
+                    success: function (data) {
+                        if (data.iResultado === -3) {
+                            alert(data.iResultadoIns);
+                        } else if (data.iResultado === -2) {
+                            alert(data.iResultadoIns);
+                        } else if (data.iResultado === 1) {
+                            fnRouteMain();
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            } else {
+                alert("por favor ingrese un correo válido");
+                return;
+            }
+
+        });
+
+        $('#btnCerrar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: gRoute + "usuario/cerrarSesion",
+                success: function (data) {
+                    if (data.iResultado === 1) {
+                        fnRouteMain();
+                    } else {
+                        fnRouteMain();
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        });
+
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

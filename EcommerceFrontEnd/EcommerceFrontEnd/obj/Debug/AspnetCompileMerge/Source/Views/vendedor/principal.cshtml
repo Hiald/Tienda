@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Principal";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container mb-5 pb-3 pt-5">
+    <div class="bg-light box-shadow-lg rounded-lg overflow-hidden">
+        <div class="row">
+            <!-- Sidebar-->
+            <!-- Content-->
+            <section class="col-lg-12 pt-lg-4 pb-4 mb-3">
+                <div class="pt-2 px-4 pl-lg-4 pr-xl-5">
+                    <!-- Title-->
+                    <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
+                        <h2 class="h3 py-2 mr-2 text-center text-sm-left">
+                            Envíos
+                            <span class="badge badge-secondary font-size-sm text-body align-middle ml-2" id="spCantidad"></span>
+                        </h2>
+                    </div>
+                    <div id="divPedido">
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Detalles del pedido -->
+<div class="modal fade" id="ModalDetalleVenta">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txOrdenCodigo"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body pb-0" id="divModalBody">
+
+            </div>
+            <div class="pb-0">
+                <div class="px-2 py-1"><span class="text-muted">Tipo de envio :&nbsp;</span><span id="spanTipoEnvio"> </span></div>
+                <div class="px-2 py-1"><span class="text-muted">Método de pago :&nbsp;</span><span id="spanMetodoPago"> </span></div>
+                <div class="px-2 py-1"><span class="text-muted">Usuario :&nbsp;</span><span id="spanUsuario"> </span></div>
+                <div class="px-2 py-1"><span class="text-muted">Lo recibirá :&nbsp;</span><span id="spanRecepciona"> </span></div>
+                <div class="px-2 py-1"><span class="text-muted">Observaciones :&nbsp;</span><span id="spanObservacion"> </span></div>
+            </div>
+            <!-- pie del modal detalles del pago -->
+            <div class="modal-footer flex-wrap justify-content-between bg-secondary font-size-md">
+                <div class="px-2 py-1"><span class="text-muted">Costo del envío :&nbsp;</span><span id="spanEnvio">S/. </span></div>
+                <div class="px-2 py-1"><span class="text-muted">Total :&nbsp;</span><span id="spanTotal">S/. </span></div>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal programar envio -->
+<input type="hidden" value="" id="hddEnvio" />
+<div class="modal fade" id="ModalActualizarPedido">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="txModalEstado"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body pb-0" id="divModalBody">
+                <div class="form-group">
+                    <label for="slcEstadoEnvio">Estado del envio</label>
+                    <select class="form-control custom-select" id="slcEstadoEnvio">
+                        <option value="0">Seleccione una opción...</option>
+                        <option value="1">Esperando tiempo de envío</option>
+                        <option value="2">Programar orden en camino</option>
+                        <option value="3">Entregando en domicilio</option>
+                        <option value="4">Orden finalizada</option>
+                        <option value="5">Reprogramando el tiempo de llegada</option>
+                        <option value="6">Enviando el reembolso</option>
+                        <option value="7">Reembolsado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="txFechaEntrega">Fecha de entrega</label>
+                    <input class="form-control" type="date" id="txFechaEntrega">
+                </div>
+                <div class="form-group">
+                    <label for="txHoraEntrega">Hora de entrega</label>
+                    <input class="form-control" type="time" id="txHoraEntrega" value="14:45">
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <br />
+            <button type="button" class="btn btn-success" onclick="fn_ConfirmarProgramacion()">Guardar</button>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/vendedor/principal.js"></script>
+}

@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "adicional";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+<style>
+    .dataTables_paginate {
+        float: right !important;
+    }
+</style>
+
+<br />
+<!-- Page title-->
+<div class="border-bottom mt-lg-2 pt-5 pb-2 mb-3">
+    <h3 class="mt-lg-2 pl-lg-3 pt-lg-5 h3">Gestión de Productos Adicionales</h3>
+    <p class="mt-lg-2 pl-lg-3">Los productos adicionales se agregan al producto ya adquirido, pagando o dejándolo gratuitamente, no es obligatorio adquirirlo</p>
+</div>
+
+<div class="container pull-up mt-5">
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdicional">
+            Nuevo producto adicional
+        </button>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblAdicional" class="table" style="width:100%">
+                            <colgroup>
+                                <col width="25%" />
+                                <col width="25%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="10%" />
+                                <col width="10%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Tipo</th>
+                                    <th>Precio</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Registrar -->
+<div class="modal fade" id="modalAdicional" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar Producto Adicional</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm1">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txNombre">Nombre del producto adicional</label>
+                            <input class="form-control" type="text" id="txNombre" placeholder="ejemplo: Gaseosa Inca kola de 1 Litro" value="" required maxlength="50">
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="txDescripcion">Descripción</label>
+                            <input class="form-control" type="text" id="txDescripcion" placeholder="" value="" required maxlength="100">
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcTipoAdicional">Tipo de producto adicional:</label>
+                            <select class="form-control custom-select" id="slcTipoAdicional" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="0">Gratuito</option>
+                                <option value="1">Con costo adicional</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione una opción.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="txPrecio">Precio (Solo si tiene costo)</label>
+                            <input class="form-control" type="text" name="txPrecio" id="txPrecio" placeholder="0.00" value="" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarA" onclick="fn_Limpiar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarA" onclick="fn_Registrar()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Editar -->
+<div class="modal fade" id="modalEditarAdicional" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idadicional="" id="hddadicional" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Producto Adicional</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="txNombreEd">Nombre del producto adicional</label>
+                            <input class="form-control" type="text" id="txNombreEd" placeholder="ejemplo: Gaseosa Inca kola de 1 Litro" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="txDescripcionEd">Descripción</label>
+                            <input class="form-control" type="text" id="txDescripcionEd" placeholder="" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="slcTipoAdicionalEd">Tipo de producto adicional:</label>
+                            <select class="form-control custom-select" id="slcTipoAdicionalEd" required>
+                                <option value="0">Gratuito</option>
+                                <option value="1">Con costo adicional</option>
+                            </select>
+                            <div class="invalid-tooltip">Seleccione una opción.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="txPrecioEd">Precio (Solo si tiene costo)</label>
+                            <input class="form-control" type="text" name="txPrecioEd" id="txPrecioEd" placeholder="0.00" value="" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarEd" onclick="fn_LimpiarEditar()">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarEd" onclick="fn_Actualizar()">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="modalEliminarAdicional" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idadicionalEliminar="" id="hddAdicionalEliminar" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm3">
+                <div class="modal-body">
+                    <h5 class="h5">¿Desea eliminar el producto adicional?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarEl">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarEl" onclick="fn_ConfimarEliminar()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#frm1').submit(false);
+        $('#frm2').submit(false);
+        $('#frm3').submit(false);
+    </script>
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/adicional/adicional.js"></script>
+}

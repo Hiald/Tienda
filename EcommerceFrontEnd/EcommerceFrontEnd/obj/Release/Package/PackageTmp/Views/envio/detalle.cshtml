@@ -1,0 +1,747 @@
+﻿@{
+    ViewBag.Title = "Tienda virtual | Detalle de mi envio";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mi pedido</title>
+
+    <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+    <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
+    <meta name="author" content="Createx Studio">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/img/index/tienda.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/img/index/tienda.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" media="screen" href="~/Content/css/vendor.min.css">
+    <link rel="stylesheet" media="screen" id="main-styles" href="~/Content/css/theme.min.css">
+    <script>
+        var gRoute = "@Url.Content("~")";
+        var dataUrl = window.location.pathname;
+        var RouteServer = window.location.host;
+    </script>
+</head>
+<!-- Body-->
+<body class="bg-secondary">
+
+    <!-- Iniciar sesion / registarse modal-->
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true">
+                                <i class="czi-unlocked mr-2 mt-n1"></i>Iniciar sesión
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false">
+                                <i class="czi-user mr-2 mt-n1"></i>Regístrate
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body tab-content py-4">
+                    <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                        <div class="form-group">
+                            <label for="si-email">Correo electrónico</label>
+                            <input class="form-control" type="email" id="si-email" placeholder="micorreo@ejemplo.com" required maxlength="75">
+                            <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="si-password">Clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="si-password" required maxlength="15">
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i>
+                                    <span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-wrap justify-content-between">
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="si-remember">
+                                <label class="custom-control-label" for="si-remember">Recordar</label>
+                            </div><a class="font-size-sm">¿Olvidaste tu clave?</a>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-shadow" id="btnInicio">Iniciar sesión</button>
+                    </form>
+
+                    <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                        <div class="form-group">
+                            <label for="su-name">Nombre</label>
+                            <input class="form-control" type="text" id="su-name" placeholder="Mi nombre" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su nombre.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-lastname">Apellido</label>
+                            <input class="form-control" type="text" id="su-lastname" placeholder="Mi apellido" required maxlength="50">
+                            <div class="invalid-feedback">Por favor ingrese su apellido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-email">Correo electrónico</label>
+                            <input class="form-control" type="email" id="su-email" placeholder="micorreo@ejemplo.com" required maxlength="75">
+                            <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-password">Clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="su-password" required>
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox" maxlength="15">
+                                    <i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-password-confirm">Confirmar clave</label>
+                            <div class="password-toggle">
+                                <input class="form-control" type="password" id="su-password-confirm" required>
+                                <label class="password-toggle-btn">
+                                    <input class="custom-control-input" type="checkbox" maxlength="15">
+                                    <i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Mostrar clave</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-shadow" id="btnNuevo">Registrarme</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cerrar sesion modal -->
+    <div class="modal fade" id="account-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#miaccount-tab" data-toggle="tab" role="tab" aria-selected="true">
+                                <i class="czi-unlocked mr-2 mt-n1"></i>Mi cuenta
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body tab-content py-4">
+                    <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="miaccount-tab">
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary btn-block btn-shadow" id="btnPedidos" onclick="fn_Mipedido(0);">Mis pedidos</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-secondary btn-block btn-shadow" id="btnCerrar">Cerrar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar-->
+    <header class="bg-light box-shadow-sm fixed-top">
+        <div class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand d-none d-sm-block mr-3 mr-xl-4 flex-shrink-0" href="@Url.Action("index", "index")" style="min-width: 7rem;">
+                    <h4 class="h4 text-dark">Muomarket</h4>
+                    <!-- <img width="142" src="img/logo-dark.png" alt="Cartzilla"/> -->
+                </a><a class="navbar-brand d-sm-none mr-2" href="@Url.Action("index", "index")" style="min-width: 4.625rem;">
+                    <h6 class="h6" href="~/Views/index/Index.cshtml">Muomarket</h6>
+                </a>
+                <!-- Search-->
+                <div class="input-group-overlay d-none d-lg-block mx-4">
+                    <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-search"></i></span></div>
+                    <input class="form-control prepended-form-control appended-form-control" type="text" placeholder="Buscar por producto">
+                    <div class="input-group-append-overlay">
+                        <select class="custom-select">
+                            <option>Todas las categorías</option>
+                            <option>Comida rápida</option>
+                            <option>Comida Vegetariana</option>
+                            <option>Pollos y carnes</option>
+                            <option>Parrilladas</option>
+                            <option>Comida por región</option>
+                            <option>Comida de nuestro Perú</option>
+                            <option>Bebidas frías y calientes</option>
+                            <option>Ropa hombre y mujer</option>
+                            <option>Accesorios</option>
+                            <option>Tecnología</option>
+                            <option>Productos de limpieza</option>
+                            <option>Farmacia</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Toolbar-->
+                <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center ml-xl-2">
+                    <a class="navbar-toggler" href="#sideNav" data-toggle="sidebar"><span class="navbar-toggler-icon"></span></a>
+                    <a class="navbar-tool d-flex d-lg-none" href="#searchBox" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="searchBox">
+                        <span class="navbar-tool-tooltip">Buscar</span>
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-search"></i></div>
+                    </a>
+                    <a class="navbar-tool d-none d-lg-flex" href="#">
+                        <span class="navbar-tool-tooltip">Lista de deseos</span>
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-heart"></i></div>
+                    </a>
+                    <a class="navbar-tool ml-1 ml-lg-0 mr-n1 mr-lg-2" href="@ViewBag.iValorCuenta" data-toggle="modal">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-user"></i></div>
+                        <div class="navbar-tool-text ml-n3"><small>@ViewBag.sNombre</small>@ViewBag.sTextoMenu</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Search collapse-->
+        <div class="collapse" id="searchBox">
+            <div class="card pt-2 pb-4 border-0 rounded-0">
+                <div class="container">
+                    <div class="input-group-overlay">
+                        <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-search"></i></span></div>
+                        <input class="form-control prepended-form-control" type="text" placeholder="Search for products">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Details Modal-->
+    <div class="modal fade" id="order-details">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Orden código: @ViewBag.GVentaid</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body pb-0">
+                    @if (Enumerable.Count(ViewBag.rDatoSV) > 0)
+                    {
+                        decimal dsubtotal = 0;
+                        foreach (var item in ViewBag.rDatoSV)
+                        {
+                            dsubtotal = dsubtotal + item.dsubtotal;
+                            int surl = item.sproductoimagen1.Length - 1;
+                            <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
+                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                    <a class="d-inline-block mx-auto mr-sm-4" style="width: 10rem;"
+                                       @*href="@Url.Action("detalle", "index", new { wtipoPromocion = item.ipromociontipo, wproductoid = item.productoid })"*@>
+                                        <img src="@item.sproductoimagen1.ToString().Substring(1, surl)" alt="Producto" style="height:140px;width:150px;">
+                                    </a>
+                                    <div class="media-body pt-2">
+                                        <h3 class="product-title font-size-base mb-2"><a>@item.sproductonombre</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="pt-2 pl-sm-3 mx-auto mx-sm-0 text-center">
+                                    <div class="text-muted mb-2">Cantidad:</div>@item.icantidad
+                                </div>
+                                <div class="pt-2 pl-sm-3 mx-auto mx-sm-0 text-center">
+                                    <div class="text-muted mb-2">Subtotal</div>S/. @item.dsubtotal
+                                </div>
+                            </div>
+                        }
+                        ViewBag.dsubtotal = dsubtotal;
+                    }
+                </div>
+                <!-- pie del modal detalles del pago -->
+                <div class="modal-footer flex-wrap justify-content-between bg-secondary font-size-md">
+                    @if (Enumerable.Count(ViewBag.rDatoV) > 0)
+                    {
+                        foreach (var item in ViewBag.rDatoV)
+                        {
+                            <div class="px-2 py-1"><span class="text-muted">Sub Total :&nbsp;</span><span>S/. @ViewBag.dsubtotal </span></div>
+                            <div class="px-2 py-1"><span class="text-muted">Costo de envío :&nbsp;</span><span>S/. @item.dcomision</span></div>
+                            <div class="px-2 py-1"><span class="text-muted">Total :&nbsp;</span><span>S/. @item.dtotal</span></div>
+                        }
+                    }
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <!-- Page Title (Dark)-->
+    <div class="bg-dark py-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="@Url.Action("index", "index")"><i class="czi-home"></i>Inicio</a></li>
+                        <li class="breadcrumb-item text-nowrap">
+                            <a href="#">Muomarket</a>
+                        </li>
+                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Seguimiento de envío</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 text-light mb-0">Pedido código: <span class="h4 font-weight-normal text-light">&nbsp;@ViewBag.GVentaid</span></h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido de pagina -->
+    <input type="hidden" id="hddVentaId" value="@ViewBag.GVentaid" data-sestado="@ViewBag.GEstado" />
+    <div class="container py-5 mb-2 mb-md-3">
+        <!-- Details-->
+        <div class="row mb-4">
+            <div class="col-sm-4 mb-2">
+                <div class="bg-secondary p-4 text-center rounded-lg"><span class="font-weight-medium text-dark mr-2">Enviado por:</span>@ViewBag.GNombreVendedor</div>
+            </div>
+            <div class="col-sm-4 mb-2">
+                <div class="bg-secondary p-4 text-center rounded-lg"><span class="font-weight-medium text-dark mr-2" id="txEstado"></span></div>
+            </div>
+            <div class="col-sm-4 mb-2">
+                <div class="bg-secondary p-4 text-center rounded-lg"><span class="font-weight-medium text-dark mr-2">Fecha de entrega:</span>@ViewBag.GFecha</div>
+            </div>
+        </div>
+        <!-- Progreso -->
+        <div class="card border-0 box-shadow-lg">
+            <div class="card-body pb-2">
+                <ul class="nav nav-tabs media-tabs nav-justified">
+                    <li class="nav-item">
+                        <div class="nav-link" id="tabpaso0">
+                            <div class="media align-items-center">
+                                <div class="media-tab-media mr-3"><i class="czi-bag"></i></div>
+                                <div class="media-body">
+                                    <div class="media-tab-subtitle text-muted font-size-xs mb-1">Primer paso</div>
+                                    <h6 class="media-tab-title text-nowrap mb-0">Orden generada</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="tabpaso1">
+                            <div class="media align-items-center">
+                                <div class="media-tab-media mr-3"><i class="czi-settings"></i></div>
+                                <div class="media-body">
+                                    <div class="media-tab-subtitle text-muted font-size-xs mb-1">Segundo paso</div>
+                                    <h6 class="media-tab-title text-nowrap mb-0">Procesando orden</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="tabpaso2">
+                            <div class="media align-items-center">
+                                <div class="media-tab-media mr-3"><i class="czi-star"></i></div>
+                                <div class="media-body">
+                                    <div class="media-tab-subtitle text-muted font-size-xs mb-1">Tercer paso</div>
+                                    <h6 class="media-tab-title text-nowrap mb-0">Entregando en domicilio</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="tabpaso3">
+                            <div class="media align-items-center">
+                                <div class="media-tab-media mr-3"><i class="czi-package"></i></div>
+                                <div class="media-body">
+                                    <div class="media-tab-subtitle text-muted font-size-xs mb-1">Cuarto paso</div>
+                                    <h6 class="media-tab-title text-nowrap mb-0">Orden finalizada</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Footer-->
+        <div class="d-sm-flex flex-wrap justify-content-between align-items-center text-center pt-4">
+            <div class="custom-control custom-checkbox mt-2 mr-3">
+                <input class="custom-control-input" type="checkbox" id="notify-me" checked>
+                <label class="custom-control-label" for="notify-me">Avisarme cuando el pedido este en mi casa</label>
+            </div><a class="btn btn-primary btn-sm mt-2" href="#order-details" data-toggle="modal">Ver detalle de la orden</a>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="bg-dark pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-sm-6 pb-2 mb-6">
+                    <div class="mt-n1">
+                        <a class="d-inline-block align-middle" href="#">
+                            <h2 class="h2 text-white">Muomarket</h2>
+                            <!-- <img class="d-block mb-4" width="117" src="img/footer-logo-light.png" alt="Cartzilla"/> -->
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-4">
+                    <div class="widget widget-links widget-light pb-2 mb-4">
+                        <h3 class="widget-title text-light">Empresa</h3>
+                        <ul class="widget-list">
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Acerca de nosotros</a></li>
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Ubicación de la tienda</a></li>
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Tipo de puesto de trabajo</a></li>
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Contacto</a></li>
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Centro de Ayuda</a></li>
+                            <li class="widget-list-item"><a class="widget-list-link" href="#">Noticias</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget widget-light pb-2 mb-4">
+                        <h3 class="widget-title text-light">Síguenos</h3>
+                        <a class="social-btn sb-light sb-facebook mr-2 mb-2" href="#"><i class="czi-facebook"></i></a>
+                        <a class="social-btn sb-light sb-twitter mr-2 mb-2" href="#"><i class="czi-twitter"></i></a>
+                        <a class="social-btn sb-light sb-instagram mr-2 mb-2" href="#"><i class="czi-instagram"></i></a>
+                        <a class="social-btn sb-light sb-youtube mr-2 mb-2" href="#"><i class="czi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-8">
+                    <div class="widget pb-2 mb-4">
+                        <h3 class="widget-title text-light pb-1">Mantente informado</h3>
+                        <form class="validate" action="https://studio.us12.list-manage.com/subscribe/post-json?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126&amp;c=?" method="get" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form">
+                            <div class="input-group input-group-overlay flex-nowrap">
+                                <div class="input-group-prepend-overlay"><span class="input-group-text text-muted font-size-base"><i class="czi-mail"></i></span></div>
+                                <input class="form-control prepended-form-control" type="email" name="EMAIL" id="mce-EMAIL" value="" placeholder="tu correo" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit" name="subscribe" id="mc-embedded-subscribe">Suscribirse*</button>
+                                </div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                            </div><small class="form-text text-light opacity-50" id="mc-helper">*Suscríbete a los pedidos y recibe las mejores ofertas solo para ti.</small>
+                            <div class="subscribe-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-5 bg-darker">
+            <div class="container">
+                <div class="row pb-3">
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="media">
+                            <i class="czi-rocket text-primary" style="font-size: 2.25rem;"></i>
+                            <div class="media-body pl-3">
+                                <h6 class="font-size-base text-light mb-1">Envíos rápidos y listos</h6>
+                                <p class="mb-0 font-size-ms text-light opacity-50">envíos gratuitos mayores a S/. 100 soles</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="media">
+                            <i class="czi-currency-exchange text-primary" style="font-size: 2.25rem;"></i>
+                            <div class="media-body pl-3">
+                                <h6 class="font-size-base text-light mb-1">Devolución garantizada</h6>
+                                <p class="mb-0 font-size-ms text-light opacity-50">te devolvemos tu dinero en menos de 7 días</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="media">
+                            <i class="czi-support text-primary" style="font-size: 2.25rem;"></i>
+                            <div class="media-body pl-3">
+                                <h6 class="font-size-base text-light mb-1">soporte 24/7</h6>
+                                <p class="mb-0 font-size-ms text-light opacity-50">Con gusto te atenderemos tus dudas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="media">
+                            <i class="czi-card text-primary" style="font-size: 2.25rem;"></i>
+                            <div class="media-body pl-3">
+                                <h6 class="font-size-base text-light mb-1">Pagos seguros en línea</h6>
+                                <p class="mb-0 font-size-ms text-light opacity-50">Porque cuidamos de tus pagos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-light pb-4 mb-3">
+                <div class="row pb-2">
+                    <div class="col-md-6 text-center text-md-left mb-4">
+                        <div class="widget widget-links widget-light">
+                            <ul class="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
+                                <li class="widget-list-item mr-4"><a class="widget-list-link" href="#">Afiliados</a></li>
+                                <li class="widget-list-item mr-4"><a class="widget-list-link" href="#">Soporte</a></li>
+                                <li class="widget-list-item mr-4"><a class="widget-list-link" href="#">Privacidad</a></li>
+                                <li class="widget-list-item mr-4"><a class="widget-list-link" href="#">Términos de uso</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right mb-4">
+                        <div class="mb-3"><a class="social-btn sb-light sb-twitter ml-2 mb-2" href="#"><i class="czi-twitter"></i></a><a class="social-btn sb-light sb-facebook ml-2 mb-2" href="#"><i class="czi-facebook"></i></a><a class="social-btn sb-light sb-instagram ml-2 mb-2" href="#"><i class="czi-instagram"></i></a><a class="social-btn sb-light sb-pinterest ml-2 mb-2" href="#"><i class="czi-pinterest"></i></a><a class="social-btn sb-light sb-youtube ml-2 mb-2" href="#"><i class="czi-youtube"></i></a></div>
+                        <img class="d-inline-block" width="187" src="~/Content/img/cards-alt.png" alt="Payment methods" />
+                    </div>
+                </div>
+                <div class="pb-4 font-size-xs text-light opacity-50 text-center text-md-left">© Todos los derechos reservados. hecho por <a class="text-light" href="#" target="_blank" rel="noopener">Crivant Studio</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back To Top Button-->
+    <a class="btn-scroll-top" href="#top" data-scroll>
+        <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Arriba</span>
+        <i class="btn-scroll-top-icon czi-arrow-up"></i>
+    </a>
+
+    <script src="~/Content/js/vendor.min.js"></script>
+    <script src="~/Content/js/theme.min.js"></script>
+    <script>
+        $('#signin-tab').submit(false);
+        $('#signup-tab').submit(false);
+        $('#miaccount-tab').submit(false);
+
+        $('#btnNuevo').click(function () {
+
+            var txNombre = $('#su-name').val();
+            var txApellido = $('#su-lastname').val();
+            var txCorreo = $('#su-email').val();
+            var txClave = $('#su-password').val();
+            var txClaveConfirmar = $('#su-password-confirm').val();
+
+            var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+            if (txClave.length < 7) {
+                alert("La clave debe tener al menos 7 caracteres");
+            }
+
+            if (txClave === txClaveConfirmar) {
+                if (testEmail.test(txCorreo)) {
+                    $.ajax({
+                        type: "POST",
+                        url: gRoute + "usuario/registrarusuario",
+                        //contentType: "application/json; charset=utf-8",
+                        data: {
+                            "wnombre": txNombre,
+                            "wapellido": txApellido,
+                            "wcorreo": txCorreo,
+                            "wclave": txClave
+                        },
+                        //dataType: "json",
+                        //async: true,
+                        success: function (data) {
+                            if (data.iResultado === -2) {
+                                alert(data.iResultadoIns);
+                            } else if (data.iResultado === -1) {
+                                alert(data.iResultadoIns);
+                            } else if (data.iResultado === 1) {
+                                fnRouteMain();
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+                } else {
+                    alert("por favor, ingrese un correo válido");
+                }
+            } else {
+                alert("Las contraseñas no coinciden");
+                $('#reg-password').val("");
+                $('#reg-password-confirm').val("");
+            }
+
+        });
+
+        $('#btnInicio').click(function () {
+            var txCorreo = $('#si-email').val();
+            var txClave = $('#si-password').val();
+
+            var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+            if (testEmail.test(txCorreo)) {
+                $.ajax({
+                    type: "POST",
+                    url: gRoute + "usuario/loginusuario",
+                    //contentType: "application/json; charset=utf-8",
+                    data: {
+                        "wcorreo": txCorreo,
+                        "wclave": txClave
+                    },
+                    //dataType: "json",
+                    //async: true,
+                    success: function (data) {
+                        if (data.iResultado === -3) {
+                            alert(data.iResultadoIns);
+                        } else if (data.iResultado === -2) {
+                            alert(data.iResultadoIns);
+                        } else if (data.iResultado === 1) {
+                            fnRouteMain();
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            } else {
+                alert("por favor ingrese un correo válido");
+            }
+
+        });
+
+        $('#btnCerrar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: gRoute + "usuario/cerrarSesion",
+                success: function (data) {
+                    if (data.iResultado === 1) {
+                        fnRouteMain();
+                    } else {
+                        fnRouteMain();
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        });
+
+        function fnRouteMain() {
+        location.replace('@Url.Action("pedido", "index")');
+        }
+
+         function fn_Mipedido() {
+            location.replace('@Url.Action("pedido", "index")');
+        }
+
+        function fn_CargarDistrito(idDistrito) {
+            var sreturn = "";
+            switch (idDistrito) {
+
+                case 1: sreturn = "ATE"; break;
+                case 2: sreturn = "BARRANCO"; break;
+                case 3: sreturn = "CERCADO DE LIMA"; break;
+                case 4: sreturn = "CHORRILLOS"; break;
+                case 5: sreturn = "CIENEGUILLA"; break;
+                case 6: sreturn = "COMAS"; break;
+                case 7: sreturn = "EL AGUSTINO"; break;
+                case 8: sreturn = "INDEPENDENCIA"; break;
+                case 9: sreturn = "JESUS MARIA"; break;
+                case 10: sreturn = "LA MOLINA"; break;
+                case 11: sreturn = "LA VICTORIA"; break;
+                case 12: sreturn = "LINCE"; break;
+                case 13: sreturn = "LOS OLIVOS"; break;
+                case 14: sreturn = "LURIN"; break;
+                case 15: sreturn = "MAGDALENA DEL MAR"; break;
+                case 16: sreturn = "PUEBLO LIBRE"; break;
+                case 17: sreturn = "MIRAFLORES"; break;
+                case 18: sreturn = "RIMAC"; break;
+                case 19: sreturn = "SAN BORJA"; break;
+                case 20: sreturn = "SAN ISIDRO"; break;
+                case 21: sreturn = "SAN JUAN DE LURIGANCHO"; break;
+                case 22: sreturn = "SAN JUAN DE MIRAFLORES"; break;
+                case 23: sreturn = "SAN LUIS"; break;
+                case 24: sreturn = "SAN MARTIN DE PORRES"; break;
+                case 25: sreturn = "SAN MIGUEL"; break;
+                case 26: sreturn = "SANTA ANITA"; break;
+                case 27: sreturn = "SANTIAGO DE SURCO"; break;
+                case 28: sreturn = "SURQUILLO"; break;
+                case 29: sreturn = "VILLA EL SALVADOR"; break;
+                case 30: sreturn = "VILLA MARIA DEL TRIUNFO"; break;
+                case 31: sreturn = "ANCON"; break;
+                case 32: sreturn = "CARABAYLLO"; break;
+                case 33: sreturn = "CHACLACAYO"; break;
+                case 34: sreturn = "PACHACAMAC"; break;
+                case 35: sreturn = "PUCUSANA"; break;
+                case 36: sreturn = "PUENTE PIEDRA"; break;
+                case 37: sreturn = "PUNTA HERMOSA"; break;
+                case 38: sreturn = "PUNTA NEGRA"; break;
+                case 39: sreturn = "SAN BARTOLO"; break;
+                case 40: sreturn = "SANTA MARIA DEL MAR"; break;
+                case 41: sreturn = "SANTA ROSA"; break;
+                case 42: sreturn = "CHOSICA (LURIGANCHO)"; break;
+                case 43: sreturn = "BREÑA"; break;
+            }
+
+            return sreturn;
+
+        }
+
+        function fn_CargarEstado(iestado) {
+            var sreturn = "";
+            switch (iestado) {
+                case 1: sreturn = "Esperando tiempo de envío"; break;
+                case 2: sreturn = "Procesando orden en camino"; break;
+                case 3: sreturn = "Entregando en domicilio"; break;
+                case 4: sreturn = "Orden finalizada"; break;
+                case 5: sreturn = "Reprogramando el tiempo de llegada"; break;
+                case 6: sreturn = "Enviando el reembolso"; break;
+                case 7: sreturn = "Reembolsado"; break;
+                default: sreturn = "Aún no definido"; break;
+            }
+
+            return sreturn;
+        }
+
+
+        function fn_CargarFecha(sfecha) {
+            var sreturn = "";
+            switch (sfecha) {
+                case "-": sreturn = "El comerciante aún no define una fecha y hora de entrega"; break;
+                default: sreturn = sfecha; break;
+            }
+
+            return sreturn;
+        }
+
+        function fn_CargarHora(shora) {
+            var sreturn = "";
+            switch (shora) {
+                case "-": sreturn = ""; break;
+                default: sreturn = shora; break;
+            }
+
+            return sreturn;
+        }
+
+        $(document).ready(function () {
+            var ivalorEstado = $('#hddVentaId').attr('data-sestado');
+
+            if (ivalorEstado === "Esperando tiempo de envío") {
+                $('#tabpaso0').addClass("active");
+                $('#txEstado').html("Estado: Esperando tiempo de envío");
+            } else if (ivalorEstado === "Procesando orden en camino") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("active");
+                $('#txEstado').html("Estado: Procesando orden en camino");
+            } else if (ivalorEstado === "Entregando en domicilio") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("completed");
+                $('#tabpaso2').addClass("active");
+                $('#txEstado').html("Estado: Entregando en domicilio");
+            } else if (ivalorEstado === "Orden finalizada") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("completed");
+                $('#tabpaso2').addClass("completed");
+                $('#tabpaso3').addClass("active");
+                $('#txEstado').html("Estado: Orden finalizada");
+            } else if (ivalorEstado === "Reprogramando el tiempo de llegada") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("completed");
+                $('#tabpaso2').addClass("completed");
+                $('#tabpaso3').addClass("active");
+                $('#txEstado').html("Estado: Reprogramando el tiempo de llegada");
+            } else if (ivalorEstado === "Enviando el reembolso") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("completed");
+                $('#tabpaso2').addClass("completed");
+                $('#tabpaso3').addClass("active");
+                $('#txEstado').html("Estado: Enviando el reembolso");
+            } else if (ivalorEstado === "Reembolsado") {
+                $('#tabpaso0').addClass("completed");
+                $('#tabpaso1').addClass("completed");
+                $('#tabpaso2').addClass("completed");
+                $('#tabpaso3').addClass("active");
+                $('#txEstado').html("Estado: Reembolsado");
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
+
+

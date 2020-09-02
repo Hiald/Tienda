@@ -1,0 +1,742 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>MuoMarket ¡Crea tu tienda virtual justo a tiempo!</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Content/src/index/cssfont.css" rel="stylesheet" property="stylesheet" media="all" type="text/css">
+
+    <meta property="og:title" content="MuoMarket ¡Crea tu tienda virtual justo a tiempo!">
+    <meta property="og:description" content="Muomarket es una solución online para negocios que no cuentan con un canal de ventas online y que debido al COVID-19 requieren ingresar al mundo digital. Les ofrecemos herramientas para que agilicen sus ventas, faciliten sus pagos y entregas e interactúen con los usuarios finales (comensales).">
+    <meta property="og:url" content="https://www.muomarket.com">
+    <meta property="og:image" content="http://jurado-001-site4.atempurl.com/content/img/srclanding/muomarket_logo.png">
+    <meta property="og:type" content="business.business">
+    <meta property="og:site_name" content="MuoMarket">
+
+    <link rel="shortcut icon" href="~/Content/img/srclanding/carrito.png">
+    <meta name="description" content="MuoMarket - E-commerce">
+    <meta name="keywords" content="tienda, e-commerce, market, moderno, responsivo, negocio, tienda, #tienda, #peru, creativo, plataforma, mitienda, experiencia">
+    <meta name="author" content="MuoMarket">
+    <meta name="description" content="Muomarket es una solución online para negocios que no cuentan con un canal de ventas online y que debido al COVID-19 requieren ingresar al mundo digital. Les ofrecemos herramientas para que agilicen sus ventas, faciliten sus pagos y entregas e interactúen con los usuarios finales (comensales).">
+    <meta name="theme-color" content="#FF7500">
+
+    <!-- ========== fuente ========== -->
+    <link href="~/Content/img/srclanding/css.css?family=Open+Sans:400,600&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/img/srclanding/all.min.css">
+    <link rel="stylesheet" href="~/Content/img/srclanding/hs-mega-menu.min.css">
+    <link rel="stylesheet" href="~/Content/img/srclanding/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/Content/img/srclanding/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Content/img/srclanding/theme.min.css">
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '618549158784949');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=618549158784949&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="header header-box-shadow-on-scroll header-abs-top header-white-nav-links-lg header-bg-transparent header-show-hide"
+            data-hs-header-options='{
+            "fixMoment": 1000,
+            "fixEffect": "slide"
+          }'>
+        <div class="header-section">
+            <!-- Topbar -->
+            <div id="logoAndNav" class="container">
+                <!-- Nav -->
+                <nav class="js-mega-menu navbar navbar-expand-lg">
+                    <!-- White Logo -->
+                    <a class="navbar-brand navbar-brand-default" href="@Url.Action("index","landing")" aria-label="Front">
+                        <!-- <img src="img/muomarket_blanco_logo.png" style="width: 300px;height: 89px" alt="Logo"> -->
+                        <h1 class="h1 text-dark mt-2">MuoMarket</h1>
+                    </a>
+                    <!-- End White Logo -->
+                    <!-- Default Logo -->
+                    <a class="navbar-brand navbar-brand-on-scroll" href="@Url.Action("index","landing")" aria-label="Front">
+                        <h2 class="h2 text-dark mt-2">MuoMarket</h2>
+                    </a>
+                    <!-- End Default Logo -->
+                    <!-- Default Logo -->
+                    <a class="navbar-brand navbar-brand-collapsed" href="@Url.Action("index","landing")" aria-label="Front">
+                        <h2 class="h2 text-dark mt-2">MuoMarket</h2>
+                    </a>
+                    <!-- End Default Logo -->
+                    <!-- Responsive Toggle Button -->
+                    <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
+                            aria-label="Toggle navigation"
+                            aria-expanded="false"
+                            aria-controls="navBar"
+                            data-toggle="collapse"
+                            data-target="#navBar">
+                        <span class="navbar-toggler-default">
+                            <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z" />
+                            </svg>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+                    <!-- Navigation -->
+                    <div id="navBar" class="collapse navbar-collapse">
+                        <div class="navbar-body header-abs-top-inner">
+                            <ul class="navbar-nav">
+                                <li class="navbar-nav-item">
+                                    <a class="nav-link text-dark nav-link-toggle font-weight-bold" style="cursor: pointer;" href="@Url.Action("index", "landing")">Inicio</a>
+                                </li>
+                                <li class="navbar-nav-item">
+                                    <a class="nav-link text-dark nav-link-toggle font-weight-bold" style="cursor: pointer;" href="@Url.Action("nosotros", "landing")">¿Quiénes somos?</a>
+                                </li>
+                                <li class="navbar-nav-item">
+                                    <a class="nav-link text-dark nav-link-toggle font-weight-bold" style="cursor: pointer;" href="@Url.Action("index", "landing")#secBeneficios">Beneficios</a>
+                                </li>
+
+                                <li class="navbar-nav-item">
+                                    <a class="nav-link text-dark nav-link-toggle font-weight-bold" style="cursor: pointer;" href="@Url.Action("index", "landing")#secPreguntas">Preguntas frecuentes</a>
+                                </li>
+                                <li class="navbar-nav-last-item">
+                                    <a class="btn btn-sm btn-indigo btn-pill transition-3d-hover text-white" data-toggle="modal" data-target="#mventa">
+                                        Pruébalo gratis
+                                    </a>
+                                </li>
+                                <!-- End Button -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Navigation -->
+                </nav>
+                <!-- End Nav -->
+            </div>
+        </div>
+    </header>
+    <!-- ========== END HEADER ========== -->
+    <!-- ========== MAIN ========== -->
+    <main id="content" role="main">
+        <!-- Hero Section -->
+        <div class="container space-top-3 space-top-lg-4 space-bottom-2">
+            <div class="w-lg-80 text-center mx-lg-auto">
+                <div class="mb-5 mb-md-11">
+                    <h1 class="display-4">Acerca de nosotros</h1>
+                    <p class="lead">
+                        Muomarket es una solución online para negocios de Alimentos, Bebidas y Restaurantes que no cuentan con un canal de ventas online y que debido al COVID-19 requieren ingresar al mundo digital.
+                        Te ofrecemos las herramientas para que agilices sus ventas, facilites sus pagos e interactúes con tus compradores.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="row mx-n2">
+                <div class="col-6 col-md px-2 mb-3">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img7.jpg);"></div>
+                </div>
+                <div class="col-md-3 d-none d-md-block px-2 mb-3">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img6.jpg);"></div>
+                </div>
+                <div class="col-6 col-md px-2 mb-3">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img14.jpg);"></div>
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col-6 col-md px-2 mb-3 mb-md-0">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img14.jpg);"></div>
+                </div>
+                <div class="col-md-4 d-none d-md-block px-2 mb-3 mb-md-0">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img18.jpg);"></div>
+                </div>
+                <div class="col-6 col-md px-2">
+                    <div class="h-250rem bg-img-hero" style="background-image: url(../../Content/img/srclanding/img122.jpg);"></div>
+                </div>
+            </div>
+            <!-- End Gallery Section -->
+        </div>
+        <!-- End Hero Section -->
+        <!-- Stats Section -->
+        <div class="container space-top-lg-1 space-bottom-2 space-bottom-lg-3">
+            <div class="row justify-content-lg-center">
+                <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0">
+                    <!-- Stats -->
+                    <div class="text-center">
+                        <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">12</span>
+                        <span>Integrantes</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+
+                <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0">
+                    <!-- Stats -->
+                    <div class="text-center">
+                        <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">35+</span>
+                        <span>Clientes</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+
+                <div class="col-sm-4 col-lg-3">
+                    <!-- Stats -->
+                    <div class="text-center">
+                        <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">85%</span>
+                        <span>clientes felices</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+            </div>
+        </div>
+        <!-- End Stats Section -->
+        <!-- Divider -->
+        <div class="container">
+            <div class="w-lg-65 mx-lg-auto">
+                <hr class="my-0">
+            </div>
+        </div>
+        <!-- End Divider -->
+        <!-- About Section -->
+        <div class="container space-2">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2>¿Cuál es nuestra misión en MuoMarket?</h2>
+                </div>
+                <div class="col-lg-6">
+                    <p>Somos agentes de cambio que buscamos transformar la conexión entre negocios y las personas.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End About Section -->
+        <!-- About Section -->
+        <div class="container space-2">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2>¿Qué proyectamos como visión?</h2>
+                </div>
+                <div class="col-lg-6">
+                    <p>Ser líderes digitales llevar nuestras soluciones digitales a toda Latam, habilitando soluciones a todos los negocios de alimentación que busquen migrar al ambiente digital.</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- End About Section -->
+        <!-- About Section -->
+        <div class="container space-2">
+            <div class="row justify-content-lg-between">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2>Nuestros valores</h2>
+                </div>
+                <div class="col-lg-6">
+                    <p>Respeto, responsabilidad, sinceridad, autodisciplina, honestidad ,empatía e innovación</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- End About Section -->
+        <!-- Divider -->
+        <div class="container">
+            <div class="w-lg-65 mx-lg-auto">
+                <hr class="my-0">
+            </div>
+        </div>
+        <!-- End Divider -->
+        <!-- Team Section -->
+        <div class="container space-2 space-lg-3">
+            <!-- Title -->
+            <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
+                <span class="d-block small font-weight-bold text-cap mb-2">Nuestro equipo</span>
+                <h2>Hacemos posible MuoMarket</h2>
+            </div>
+            <!-- End Title -->
+
+            <div class="row mx-n2 mb-5">
+                <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                    <!-- Team -->
+                    <div class="card h-100 transition-3d-hover">
+                        <div class="card-body">
+                            <div class="avatar avatar-lg avatar-circle mb-4">
+                                <img class="avatar-img" src="~/Content/img/srclanding/Adolfo.png" alt="Image Description">
+                            </div>
+
+                            <span class="d-block small font-weight-bold text-cap mb-1">Lider de finanzas</span>
+                            <h4 class="text-lh-sm">Adolfo Chumbiauca</h4>
+                            <p class="font-size-1">Formo parte de MuoMarket.</p>
+                        </div>
+
+                        <div class="card-footer border-0 pt-0">
+                            <!-- Social Networks -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.linkedin.com/in/adolfo-chumbiauca-velásquez-a76007b5/" target="_blank">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="mailto:adolfochumbiaucavelasquez@gmail.com" target="_blank">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.instagram.com/adolfochumbiaucav" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Social Networks -->
+                        </div>
+                    </div>
+                    <!-- End Team -->
+                </div>
+
+                <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                    <!-- Team -->
+                    <div class="card h-100 transition-3d-hover">
+                        <div class="card-body">
+                            <div class="avatar avatar-lg avatar-circle mb-4">
+                                <img class="avatar-img" src="~/Content/img/srclanding/Jonathan.png" alt="Image Description">
+                            </div>
+
+                            <span class="d-block small font-weight-bold text-cap mb-1">Lider del producto</span>
+                            <h4 class="text-lh-sm">Jonathan Seminario</h4>
+                            <p class="font-size-1">Formo parte de MuoMarket.</p>
+                        </div>
+
+                        <div class="card-footer border-0 pt-0">
+                            <!-- Social Networks -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.linkedin.com/in/jonathan-seminario-roque-703600154/" target="_blank">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="mailto:jonathan.seminario11@gmail.com" target="_blank">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.instagram.com/jo.neric" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Social Networks -->
+                        </div>
+                    </div>
+                    <!-- End Team -->
+                </div>
+
+                <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                    <!-- Team -->
+                    <div class="card h-100 transition-3d-hover">
+                        <div class="card-body">
+                            <div class="avatar avatar-lg avatar-circle mb-4">
+                                <img class="avatar-img" src="~/Content/img/srclanding/Janeth.png" alt="Image Description">
+                            </div>
+
+                            <span class="d-block small font-weight-bold text-cap mb-1">Lider en Marketing</span>
+                            <h4 class="text-lh-sm">Janeth Rivera</h4>
+                            <p class="font-size-1">Formo parte de MuoMarket.</p>
+                        </div>
+
+                        <div class="card-footer border-0 pt-0">
+                            <!-- Social Networks -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.linkedin.com/in/janeth-r-9aab5895/" target="_blank">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="mailto:janethrivera93@gmail.com" target="_blank">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.instagram.com/janethrivh" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Social Networks -->
+                        </div>
+                    </div>
+                    <!-- End Team -->
+                </div>
+
+                <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                    <!-- Team -->
+                    <div class="card h-100 transition-3d-hover">
+                        <div class="card-body">
+                            <div class="avatar avatar-lg avatar-circle mb-4">
+                                <img class="avatar-img" src="~/Content/img/srclanding/Mario.png" alt="Image Description">
+                            </div>
+
+                            <span class="d-block small font-weight-bold text-cap mb-1">Lider en tecnología</span>
+                            <h4 class="text-lh-sm">Mario Gutierrez</h4>
+                            <p class="font-size-1">Formo parte de MuoMarket.</p>
+                        </div>
+
+                        <div class="card-footer border-0 pt-0">
+                            <!-- Social Networks -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.linkedin.com/in/mario-robinson-gutierrez-soto-70a03a180/" target="_blank">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="mailto:mariorgs975@gmail.com">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.instagram.com/mariorobinsong.soto" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Social Networks -->
+                        </div>
+                    </div>
+                    <!-- End Team -->
+                </div>
+            </div>
+
+            <!-- Info -->
+            <!-- <div class="text-center">
+               <div class="d-inline-block font-size-1 border bg-white text-center rounded-pill py-3 px-4">
+                 ¿Buscas unirte a nosotros? <a class="font-weight-bold ml-3" href="#">Te estamos buscando <span class="fa fa-angle-right fa-sm ml-1"></span></a>
+               </div>
+             </div>-->
+            <!-- End Info -->
+        </div>
+        <!-- End Team Section -->
+    </main>
+    <!-- ========== END MAIN ========== -->
+    <!-- CTA Section -->
+    <div style="background-color: #FF7500;">
+        <div class="container space-2">
+            <div class="row justify-content-lg-between align-items-lg-center text-center text-lg-left">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <h2 class="text-white mb-0">Ofrece una mejor experiencia a tus clientes</h2>
+                </div>
+
+                <div class="col-lg-5 text-lg-right">
+                    <a class="btn btn-indigo btn-wide btn-pill transition-3d-hover mx-1 mb-2" href="@Url.Action("index","landing")#secContactar">Pruébalo gratis</a>
+                    <a class="btn btn-light btn-wide btn-pill transition-3d-hover mx-1 mb-2" href="@Url.Action("index","landing")#secContactar">Más información</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="container space-2 space-top-lg-3">
+        <!-- Links -->
+        <div class="row mb-11">
+            <div class="col-md-3 mb-5 mb-md-0">
+                <div class="mb-4">
+                    <h2>MuoMarket</h2>
+                </div>
+
+            </div>
+
+            <div class="col-sm-8 col-md-6 mb-6 mb-sm-0">
+                <!-- Nav Links -->
+                <ul class="nav nav-sm nav-x-0 flex-column">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">¿Quiénes somos?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Beneficios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Preguntas frecuentes</a></li>
+                </ul>
+                <!-- End Nav Links -->
+            </div>
+
+            <div class="col-sm-4 col-md-3 mb-3 mb-sm-0">
+                <!-- Nav Links -->
+                <ul class="nav nav-sm nav-x-0 flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">
+                            Precios
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">
+                            Ayuda
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">
+                            Térmninos &amp; Condiciones
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">
+                            Política de privacidad
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Nav Links -->
+            </div>
+        </div>
+        <!-- End Links -->
+        <!-- Copyright -->
+        <div class="row align-items-sm-center">
+            <div class="col-sm-6 mb-4 mb-sm-0">
+                <p class="small mb-0">contacto@muomarket.com</p>
+                <p class="small mb-0">+51 930 108 946</p>
+                <p class="small mb-0">+51 943 468 530</p>
+                <p class="small mb-0">&copy; MuoMarket. 2020. Todos los derechos reservados.</p>
+            </div>
+
+            <div class="col-sm-6 text-sm-right">
+                <!-- Social Networks -->
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item mb-2 mb-sm-0">
+                        <a class="btn btn-xs btn-icon btn-soft-indigo rounded-circle" href="https://www.facebook.com/muomarketperu" target="_blank">
+                            <i class="fa fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mb-2 mb-sm-0">
+                        <a class="btn btn-xs btn-icon btn-soft-indigo rounded-circle" href="mailto:contacto@muomarket.com" target="_blank">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mb-2 mb-sm-0">
+                        <a class="btn btn-xs btn-icon btn-soft-indigo rounded-circle" href="https://www.instagram.com/muomarketperu" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mb-2 mb-sm-0">
+                        <a class="btn btn-xs btn-icon btn-soft-indigo rounded-circle" href="#">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Social Networks -->
+            </div>
+        </div>
+        <!-- End Copyright -->
+    </footer>
+    <!-- ========== END FOOTER ========== -->
+    <!-- Go to Top -->
+    <a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;"
+       data-hs-go-to-options='{
+       "offsetTop": 700,
+       "position": {
+         "init": {
+           "right": 15
+         },
+         "show": {
+           "bottom": 15
+         },
+         "hide": {
+           "bottom": -15
+         }
+       }
+     }'>
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- End Go to Top -->
+    <!-- JS Global Compulsory -->
+    <script src="~/Content/img/srclanding/jquery.min.js"></script>
+    <script src="~/Content/img/srclanding/jquery-migrate.min.js"></script>
+    <script src="~/Content/img/srclanding/bootstrap.bundle.min.js"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="~/Content/img/srclanding/hs-header.min.js"></script>
+    <script src="~/Content/img/srclanding/hs-go-to.min.js"></script>
+    <script src="~/Content/img/srclanding/hs-mega-menu.min.js"></script>
+
+    <!-- escritura de css -->
+    <script src="~/Content/img/srclanding/typed.min.js"></script>
+    <script src="~/Content/img/srclanding/jquery.fancybox.min.js"></script>
+    <script src="~/Content/img/srclanding/aos.js"></script>
+
+    <!-- JS Front -->
+    <script src="~/Content/img/srclanding/hs.core.js"></script>
+    <script src="~/Content/img/srclanding/hs.fancybox.js"></script>
+    <script src="~/Content/img/srclanding/hs-toggle-switch.min.js"></script>
+
+    <script>
+        $(document).on('ready', function () {
+            // initialization of header
+            var header = new HSHeader($('#header')).init();
+
+            // initialization of mega menu
+            var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+                desktop: {
+                    position: 'left'
+                }
+            }).init();
+
+            // initialization of fancybox
+            $('.js-fancybox').each(function () {
+                var fancybox = $.HSCore.components.HSFancyBox.init($(this));
+            });
+
+            // initialization of aos
+            AOS.init({
+                duration: 650,
+                once: true
+            });
+
+            // initialization of go to
+            $('.js-go-to').each(function () {
+                var goTo = new HSGoTo($(this)).init();
+            });
+
+
+
+            $('#btnDemo').click(function () {
+                window.open(
+                    vgruta + "index/index",
+                    '_blank'
+                );
+                //window.location.href = vgruta + "index/index";
+                /*$('#modalDemo').modal({
+                    show: true
+                });
+                $('#ifrm').attr("src", "");
+                    */
+            });
+        });
+
+        var vgruta = "@Url.Content("~")";
+        var datourl = window.location.pathname;
+        var rutaservidor = window.location.host;
+        function fnRoute() {
+            window.location.href = rutaservidor;
+        }
+
+        function enviarVenta() {
+
+            var txContacto = $('#txnombrec').val();
+            var txCelular = $('#txcelular').val();
+            var slcDepartamento = $('#slcde option').filter(':selected').val();
+            var txCorreoVenta = $('#txcorreoVenta').val();
+
+            if (txContacto === "" || slcDepartamento === "0" || txCorreoVenta === "") {
+                alert("Por favor completar los campos");
+            } else {
+
+                var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                if (testEmail.test(txCorreoVenta)) {
+                    $.ajax({
+                        url: vgruta + "landing/enviarVenta",
+                        cache: false,
+                        type: "POST",
+                        data: {
+                            "wtienda": "",
+                            "wcontacto": txContacto,
+                            "wcelular": txCelular,
+                            "witiponegocio": 1,
+                            "wruc": "",
+                            "wdireccion": "",
+                            "widepartamento": slcDepartamento,
+                            "wcorreoventa": txCorreoVenta
+                        },
+                        success: function (respuesta) {
+                            console.log(respuesta);
+                            $('#mventa').modal('hide');
+                            alert("Muchas gracias, nos pondremos en contacto contigo lo más pronto posible");
+
+                            $('#txnombrec').val("");
+                            $('#txcelular').val("");
+                            $('#txcorreoVenta').val("");
+                        },
+                        error: function () {
+                            console.log("error al registrar");
+                        }
+                    });
+                } else {
+                    alert("Por favor ingrese un correo válido");
+                }
+
+            }
+
+        }
+
+        function enviarVenta2() {
+
+            var txContacto = $('#txnombrec2').val();
+            var txCelular = $('#txcelular2').val();
+            var slcDepartamento = $('#slcde2 option').filter(':selected').val();
+            var txCorreoVenta = $('#txcorreoVenta2').val();
+
+            if (txContacto === "" || slcDepartamento === "0" || txCorreoVenta === "") {
+                alert("Por favor completar los campos");
+            } else {
+                var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                if (testEmail.test(txCorreoVenta)) {
+                    $.ajax({
+                        url: vgruta + "landing/enviarVenta",
+                        cache: false,
+                        type: "POST",
+                        data: {
+                            "wtienda": "",
+                            "wcontacto": txContacto,
+                            "wcelular": txCelular,
+                            "witiponegocio": 1,
+                            "wruc": "",
+                            "wdireccion": "",
+                            "widepartamento": slcDepartamento,
+                            "wcorreoventa": txCorreoVenta
+                        },
+                        success: function (respuesta) {
+                            console.log(respuesta);
+                            $('#mventa').modal('hide');
+                            alert("Muchas gracias, nos pondremos en contacto contigo lo más pronto posible");
+
+                            $('#txnombrec2').val("");
+                            $('#txcelular2').val("");
+                            $('#txcorreoVenta2').val("");
+                        },
+                        error: function () {
+                            console.log("error al registrar");
+                        }
+                    });
+                } else {
+                    alert("Por favor ingrese un correo válido");
+                }
+            }
+
+        }
+
+    </script>
+
+
+    <!-- IE Support -->
+    <script>
+        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="~/Content/img/srclanding/polifills.js"><\/script>');
+    </script>
+</body>
+
+</html>

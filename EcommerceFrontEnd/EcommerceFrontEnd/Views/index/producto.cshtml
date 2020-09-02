@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "catalogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page-->
+<main class="sidebar-fixed-enabled" style="padding-top: 5rem;">
+    <section class="px-lg-3 pt-4">
+        <div class="px-3 pt-2">
+            <!-- Page title + breadcrumb-->
+            <nav class="mb-4" aria-label="breadcrumb">
+                <ol class="breadcrumb flex-lg-nowrap">
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="@Url.Action("index", "index")"><i class="czi-home"></i>Inicio</a></li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">Catálogo de productos</li>
+                </ol>
+            </nav>
+            <!-- Content-->
+
+            <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
+                <h1 class="h2 mb-3 mb-md-0 mr-3">Catálogo de productos</h1>
+                <!-- orden de resultados
+                <div class="d-flex align-items-center">
+                    <div class="d-none d-sm-block py-2 font-size-sm text-muted text-nowrap mr-2">Ordenar por:</div>
+                    <ul class="nav nav-tabs font-size-sm mb-0">
+                        <li class="nav-item"><a class="nav-link active" href="#">Populares</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Mejor Valorados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Menor precio</a></li>
+                    </ul>
+                </div>
+                    -->
+            </section>
+            <!-- Product grid-->
+            <div class="row no-gutters mx-n2" id="lista-productos">
+
+                <!-- Productos -->
+                @if (Enumerable.Count(ViewBag.lstProducto) > 0)
+                {
+                    foreach (var item in ViewBag.lstProducto)
+                    {
+                        int surl = item.simagen1.Length - 1;
+                        <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6 px-2 mb-3">
+                            <div class="card product-card card-static pb-3">
+                                <button class="btn-wishlist btn-sm" type="button" data-toggle="tooltip" data-placement="left" title="Añadir a la lista de deseos">
+                                    <i class="czi-heart"></i>
+                                </button>
+                                <a class="card-img-top d-block overflow-hidden"
+                                   style="cursor:pointer;"
+                                   onclick="fn_rtDetalle(@item.ipromociontipo, @item.productoid);">
+                                    <img src="@item.simagen1.ToString().Substring(1, surl)" alt="Producto"
+                                         style="height:200px !important;width:330px !important;background-size: cover;">
+                                </a>
+                                <div class="card-body py-2">
+                                    <a class="product-meta d-block font-size-xs pb-1" href="#">@item.scategoria</a>
+                                    <h3 class="product-title font-size-sm">
+                                        <a style="cursor:pointer;"
+                                           onclick="fn_rtDetalle(@item.ipromociontipo, @item.productoid);">
+                                            @item.snombre
+                                        </a>
+                                    </h3>
+                                    <div class="product-price"><span class="text-accent">S/.&nbsp;@item.dprecio</span></div>
+                                </div>
+                                <input type="hidden" id="hddCarrito_@item.productoid"
+                                       data-productoid="@item.productoid"
+                                       data-snombre="@item.snombre"
+                                       data-simagen="@item.simagen1"
+                                       data-ivendedor="@item.vendedorid"
+                                       data-icantidad=""
+                                       data-dprecio="@item.dprecio" />
+                                <select id="slcCantidad" class="custom-select" style="display:none">
+                                    <option value="1">1</option>
+                                </select>
+                                <div class="product-floating-btn">
+                                    <button class="btn btn-primary btn-shadow btn-sm agregar-carrito"
+                                            onclick="fn_AgregarCarroCatalogo(@item.productoid);">
+                                        +<i class="czi-cart font-size-base ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h5 class="mt-5 mb-5 h5 product-title">¡Ups! no hay productos disponibles</h5>
+                }
+            </div>
+
+            <!-- Paginacion
+            <div class="pt-4 pb-5 mb-4">
+                <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><i class="czi-arrow-left mr-2"></i>Atrás</a></li>
+                    </ul>
+                    <ul class="pagination">
+                        <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+                        <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="sr-only">(Actual)</span></span></li>
+                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+                    </ul>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Next">Siguiente<i class="czi-arrow-right ml-2"></i></a></li>
+                    </ul>
+                </nav>
+            </div>-->
+
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="bg-dark pt-5">
+        <div class="px-lg-3 pt-2 pb-4">
+            <div class="mx-auto px-3" style="max-width: 80rem;">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-sm-4 pb-2 mb-4">
+                        <div class="mt-n1">
+                            <a class="d-inline-block align-middle" href="#">
+                                <h4 class="h4 text-white">Bel's Chicken</h4>
+                                <!-- <img class="d-block mb-4" width="117" src="img/footer-logo-light.png" alt="Cartzilla"/> -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Catálogo de Productos</h3>
+                            <ul class="widget-list">
+                                @if (Enumerable.Count(ViewBag.lstCategoria) > 0)
+                                {
+                                    foreach (var item in ViewBag.lstCategoria)
+                                    {
+                                        <li class="widget-list-item"><a class="widget-list-link" onclick="fn_rtCategoria(@item.categoriaid)" style="cursor:pointer">@item.sNombre</a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Empresa</h3>
+                            <ul class="widget-list">
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Acerca de nosotros</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Ubicación de la tienda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Tipo de puesto de trabajo</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Contacto</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Centro de Ayuda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Noticias</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Síguenos</h3><a class="social-btn sb-light sb-twitter mr-2 mb-2" href="#"><i class="czi-twitter"></i></a>
+                            <a class="social-btn sb-light sb-facebook mr-2 mb-2" href="#"><i class="czi-facebook"></i></a>
+                            <a class="social-btn sb-light sb-instagram mr-2 mb-2" href="#"><i class="czi-instagram"></i></a>
+                            <a class="social-btn sb-light sb-youtube mr-2 mb-2" href="#"><i class="czi-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-8">
+                        <div class="widget pb-2 mb-4">
+                            <h3 class="widget-title text-light pb-1">Mantente informado</h3>
+                            <div class="input-group input-group-overlay flex-nowrap">
+                                <div class="input-group-prepend-overlay"><span class="input-group-text text-muted font-size-base"><i class="czi-mail"></i></span></div>
+                                <input class="form-control prepended-form-control" type="email" value="" placeholder="tu correo" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Suscribirse*</button>
+                                </div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                            </div>
+                            <small class="form-text text-light opacity-50" id="mc-helper">*Suscríbete a los pedidos y recibe las mejores ofertas solo para ti.</small>
+                            <div class="subscribe-status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-darker px-lg-3 py-3">
+            <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" style="max-width: 80rem;">
+                <div class="font-size-xs text-light opacity-50 text-center text-sm-left py-3">
+                    © Todos los derechos reservador. Hecho por
+                    <a class="text-light" href="#" target="_blank" rel="noopener">Crivant Studio</a>
+                </div>
+                <div class="py-3">
+                    <img class="d-block mx-auto mx-sm-left" width="187" src="~/Content/img/cards-alt.png" alt="Payment methods" />
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+        });
+    </script>
+}

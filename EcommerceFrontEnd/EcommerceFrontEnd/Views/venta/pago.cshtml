@@ -1,0 +1,458 @@
+﻿@{
+    ViewBag.Title = "Pago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #sideNav {
+        display: none;
+    }
+
+    #divCarrito {
+        display: none;
+    }
+</style>
+
+<!-- Page-->
+<input type="hidden" value="" id="txFechaReg" />
+<main class="sidebar" style="padding-top: 5rem;">
+    <section class="px-lg-3 pt-4">
+        <div class="px-3 pt-2">
+            <!-- Page title + breadcrumb-->
+            <nav class="mb-4" aria-label="breadcrumb">
+                <ol class="breadcrumb flex-lg-nowrap">
+                    <li class="breadcrumb-item"><a class="text-nowrap" href="@Url.Action("index", "index")"><i class="czi-home"></i>Inicio</a></li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">Pago</li>
+                </ol>
+            </nav>
+            <!-- Checkout form-->
+            <form id="frm1">
+                <div class="row no-gutters pb-5 mb-xl-3">
+                    <div class="col-xl-6 mb-3">
+                        <h1 class="h2 mb-4">Pago</h1>
+                        <h2 class="h5 mb-4">Detalle del delivery</h2>
+                        <!-- GPS
+                        <div class="d-flex flex-wrap justify-content-between align-items-center rounded-lg border py-2 px-3 mb-4">
+                            <div class="media media-ie-fix align-items-center mr-3 py-2">
+                                <img class="rounded-circle" src="~/Content/img/newyork.jpg" width="50" alt="New York">
+                                <div class="media-body pl-3">
+                                    <div class="font-size-ms text-muted">Selecciona tu ubicación:</div>
+                                    <div class="font-size-md font-weight-medium text-heading" id="div_gps"></div>
+                                </div>
+                            </div>
+                            <div class="py-2" onclick="fn_GPS();">
+                                <a class="btn btn-light btn-sm btn-shadow mt-3 mt-sm-0" href="#">
+                                    <i class="czi-edit mr-2"></i>Cambiar ciudad
+                                </a>
+                            </div>
+                        </div>
+                            -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="slctipoEnvio">Tipo de envio: </label>
+                                    <select class="form-control custom-select" id="slctipoEnvio" required>
+                                        <option value="1">Envío a domicilio</option>
+                                        <option value="2">Recoger en tienda</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="txNombre">¿Quién obtendrá el pedido?<span class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" id="txNombre" required placeholder="Nombre y apellido" maxlength="150">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="txCelular">Celular <span class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" id="txCelular" required maxlength="9">
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="divResultado1">
+                                <div class="form-group">
+                                    <label for="txDireccion">Dirección <span class='text-danger'>*</span></label>
+                                    <input class="form-control" type="text" id="txDireccion" required maxlength="250">
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="divResultado2">
+                                <div class="form-group">
+                                    <label for="slcDistrito">Distrito: </label>
+                                    <select class="form-control custom-select" id="slcDistrito" required>
+                                        <option value="0" selected="selected">Seleccione un Distrito</option>
+                                        <option value="1">ATE</option>
+                                        <option value="2">BARRANCO</option>
+                                        <option value="3">CERCADO DE LIMA</option>
+                                        <option value="4">CHORRILLOS</option>
+                                        <option value="5">CIENEGUILLA</option>
+                                        <option value="6">COMAS</option>
+                                        <option value="7">EL AGUSTINO</option>
+                                        <option value="8">INDEPENDENCIA</option>
+                                        <option value="9">JESUS MARIA</option>
+                                        <option value="10">LA MOLINA</option>
+                                        <option value="11">LA VICTORIA</option>
+                                        <option value="12">LINCE</option>
+                                        <option value="13">LOS OLIVOS</option>
+                                        <option value="14">LURIN</option>
+                                        <option value="15">MAGDALENA DEL MAR</option>
+                                        <option value="16">PUEBLO LIBRE</option>
+                                        <option value="17">MIRAFLORES</option>
+                                        <option value="18">RIMAC</option>
+                                        <option value="19">SAN BORJA</option>
+                                        <option value="20">SAN ISIDRO</option>
+                                        <option value="21">SAN JUAN DE LURIGANCHO</option>
+                                        <option value="22">SAN JUAN DE MIRAFLORES</option>
+                                        <option value="23">SAN LUIS</option>
+                                        <option value="24">SAN MARTIN DE PORRES</option>
+                                        <option value="25">SAN MIGUEL</option>
+                                        <option value="26">SANTA ANITA</option>
+                                        <option value="27">SANTIAGO DE SURCO</option>
+                                        <option value="28">SURQUILLO</option>
+                                        <option value="29">VILLA EL SALVADOR</option>
+                                        <option value="30">VILLA MARIA DEL TRIUNFO</option>
+                                        <option value="31">ANCON</option>
+                                        <option value="32">CARABAYLLO</option>
+                                        <option value="33">CHACLACAYO</option>
+                                        <option value="34">PACHACAMAC</option>
+                                        <option value="35">PUCUSANA</option>
+                                        <option value="36">PUENTE PIEDRA</option>
+                                        <option value="37">PUNTA HERMOSA</option>
+                                        <option value="38">PUNTA NEGRA</option>
+                                        <option value="39">SAN BARTOLO</option>
+                                        <option value="40">SANTA MARIA DEL MAR</option>
+                                        <option value="41">SANTA ROSA</option>
+                                        <option value="42">CHOSICA (LURIGANCHO)</option>
+                                        <option value="43">BREÑA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" id="divResultado3">
+                                <div class="form-group">
+                                    <label for="txObservacion">Detalles de la dirección u observación</label>
+                                    <textarea class="form-control" id="txObservacion" rows="4" placeholder="Por favor escríbenos alguna referencia de la ubicación..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- cupon
+                        <div class="rounded-lg border p-4 my-3">
+                            <h2 class="h6 pb-2">¿Tienes un cupón de descuento?</h2>
+                            <div class="d-flex">
+                                <input class="form-control mr-3" type="text" placeholder="Código de cupón">
+                                <button class="btn btn-outline-primary" type="button">Aplicar código</button>
+                            </div>
+                        </div>-->
+                    </div>
+
+                    <!-- carrito -->
+                    <div class="col-xl-5 offset-xl-1 mb-3">
+                        <div class="bg-light rounded-lg py-5 px-4 px-sm-5">
+                            <h2 class="h5 pb-3">Tu orden</h2>
+                            <div class="media align-items-center pb-2 border-bottom">
+                                <div id="bodyPago">
+
+                                </div>
+                            </div>
+
+                            <ul class="list-unstyled font-size-sm pt-4 pb-2 border-bottom">
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <span class="mr-2">Subtotal:</span>
+                                    <span class="text-right font-weight-medium" id="divsubtotal"></span>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center"
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    data-placement="left"
+                                    data-trigger="hover"
+                                    title="Pedidos"
+                                    data-content="Como monto mínimo se cobrará S/. 10.00 por pedido">
+                                    <span class="mr-2">Envío a domicilio:</span>
+                                    <span class="text-right font-weight-medium" id="divdelivery"></span>
+                                </li>
+                            </ul>
+                            <h3 class="font-weight-normal text-center my-4 py-2" id="divtotal"
+                                data-container="body"
+                                data-toggle="popover"
+                                data-placement="left"
+                                data-trigger="hover"
+                                title="Total"
+                                data-content="Este es el monto total de tu pedido, incluido IGV y el envío"></h3>
+                            <div class="accordion box-shadow-sm mb-4" id="payment-methods">
+
+                                <!-- carrito
+                                <div class="card">
+                                    <div class="card-header py-3 px-3">
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" name="license" id="payment-card" checked>
+                                            <label class="custom-control-label font-weight-medium text-dark" for="payment-card" data-toggle="collapse" data-target="#credit-card">Tarjeta<i class="czi-card text-muted font-size-lg align-middle mt-n1 ml-2"></i></label>
+                                        </div>
+                                    </div>
+                                    <div class="collapse show" id="credit-card" data-parent="#payment-methods">
+                                        <div class="card-body pb-2">
+                                            <input class="form-control mb-3" type="text" placeholder="Número de tarjeta">
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <input class="form-control" type="text" placeholder="MM/AA">
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <input class="form-control" type="text" placeholder="CVC">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
+
+                                <div class="card">
+                                    <div class="card-header py-3 px-3">
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" name="license" id="payment-paypal" checked
+                                                   data-container="body"
+                                                   data-toggle="popover"
+                                                   data-placement="left"
+                                                   data-trigger="hover"
+                                                   title="Pago por yape"
+                                                   data-content="Puedes pagar desde la aplicación Yape por QR o enviando el dinero al número mencionado">
+                                            <label class="custom-control-label font-weight-medium text-dark" for="payment-paypal" data-toggle="collapse" data-target="#paypal">
+                                                Yape
+                                                <i class="czi-mobile text-muted font-size-base align-middle mt-n1 ml-2"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="paypal" data-parent="#payment-methods">
+                                        <div class="card-body pb-2">
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <label class="text-center">Por favor, realizar el pago al número 999999999</label>
+                                                    <div id="qrcode">
+                                                        <img src="https://www.codigos-qr.com/qr/php/qr_img.php?d=https%3A%2F%2Fwww.viabcp.com%2Fcanales%2Fyape&s=6&e=m" alt="Yape" />
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header py-3 px-3">
+                                        <div class="custom-control custom-radio">
+                                            <input class="custom-control-input" type="radio" name="license" id="payment-cash"
+                                                   data-container="body"
+                                                   data-toggle="popover"
+                                                   data-placement="left"
+                                                   data-trigger="hover"
+                                                   title="Pago contra entrega"
+                                                   data-content="Puedes seleccionar tu pedido y pagar en el mismo instante en la tienda. Por favor evitemos los pagos de billetes y monedas en físico :)">
+                                            <label class="custom-control-label font-weight-medium text-dark" for="payment-cash" data-toggle="collapse" data-target="#cash">Pago contra entrega<i class="czi-wallet text-muted font-size-lg align-middle mt-n1 ml-2"></i></label>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="cash" data-parent="#payment-methods">
+                                        <div class="card-body">
+                                            <p class="font-size-sm mb-0">Voy a pagar cuando llegue el personal de delivery</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="pt-2">
+                                <button class="btn btn-primary btn-block"
+                                        onclick="fn_RegistrarVenta();"
+                                        data-container="body"
+                                        data-toggle="popover"
+                                        data-placement="left"
+                                        data-trigger="hover"
+                                        title="Consejo"
+                                        data-content="Asegúrate de que todos tus datos estén correctamente, de ese modo llegaremos más rápido a ti :)">
+                                    Completar Pago
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="bg-dark pt-5">
+        <div class="px-lg-3 pt-2 pb-4">
+            <div class="mx-auto px-3" style="max-width: 80rem;">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-sm-4 pb-2 mb-4">
+                        <div class="mt-n1">
+                            <a class="d-inline-block align-middle" href="#">
+                                <h2 class="h2 text-white">Tienda</h2>
+                                <!-- <img class="d-block mb-4" width="117" src="img/footer-logo-light.png" alt="Cartzilla"/> -->
+                            </a>
+                        </div>
+                        <div class="btn-group dropdown disable-autohide">
+                            <button class="btn btn-outline-light border-light btn-sm dropdown-toggle px-2" type="button" data-toggle="dropdown">
+                                <img class="mr-2" width="20" src="~/Content/img/it.png" alt="Soles" />Esp | S/.
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <select class="custom-select custom-select-sm">
+                                        <option value="usd">S/. SOL</option>
+                                        <option value="eur">$ USD</option>
+                                    </select>
+                                </li>
+                                <li><a class="dropdown-item pb-1" href="#"><img class="mr-2" width="20" src="~/Content/img/fr.png" alt="Français" />Inglés</a></li>
+                                <li><a class="dropdown-item" href="#"><img class="mr-2" width="20" src="~/Content/img/it.png" alt="Italiano" />Español</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Catálogo de Productos</h3>
+                            <ul class="widget-list">
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Ofertas especiales</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Hambugesas</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Frutas y vegetales</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Pollos</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Carne</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Platos peruanos</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Platos de la región costa</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Platos de la región sierra</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Platos de la región selva</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Bebidas frías y calientes</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Productos de limpieza</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="widget widget-links widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Empresa</h3>
+                            <ul class="widget-list">
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Acerca de nosotros</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Ubicación de la tienda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Tipo de puesto de trabajo</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Contacto</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Centro de Ayuda</a></li>
+                                <li class="widget-list-item"><a class="widget-list-link" href="#">Noticias</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-light pb-2 mb-4">
+                            <h3 class="widget-title text-light">Síguenos</h3><a class="social-btn sb-light sb-twitter mr-2 mb-2" href="#"><i class="czi-twitter"></i></a><a class="social-btn sb-light sb-facebook mr-2 mb-2" href="#"><i class="czi-facebook"></i></a><a class="social-btn sb-light sb-instagram mr-2 mb-2" href="#"><i class="czi-instagram"></i></a><a class="social-btn sb-light sb-youtube mr-2 mb-2" href="#"><i class="czi-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-8">
+                        <div class="widget pb-2 mb-4">
+                            <h3 class="widget-title text-light pb-1">Mantente informado</h3>
+                            <form class="validate" action="https://studio.us12.list-manage.com/subscribe/post-json?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126&amp;c=?" method="get" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form">
+                                <div class="input-group input-group-overlay flex-nowrap">
+                                    <div class="input-group-prepend-overlay"><span class="input-group-text text-muted font-size-base"><i class="czi-mail"></i></span></div>
+                                    <input class="form-control prepended-form-control" type="email" name="EMAIL" id="mce-EMAIL" value="" placeholder="tu correo" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" name="subscribe" id="mc-embedded-subscribe">Suscribirse*</button>
+                                    </div>
+                                </div>
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                    <input type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                                </div><small class="form-text text-light opacity-50" id="mc-helper">*Suscríbete a los pedidos y recibe las mejores ofertas solo para ti.</small>
+                                <div class="subscribe-status"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-darker px-lg-3 py-3">
+            <div class="d-sm-flex justify-content-between align-items-center mx-auto px-3" style="max-width: 80rem;">
+                <div class="font-size-xs text-light opacity-50 text-center text-sm-left py-3">© Todos los derechos reservador. Hecho por <a class="text-light" href="https://createx.studio/" target="_blank" rel="noopener">Crivant Studio</a></div>
+                <div class="py-3">
+                    <img class="d-block mx-auto mx-sm-left" width="187" src="~/Content/img/cards-alt.png" alt="Payment methods" />
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<div class="modal fade" id="modalSmall" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" role="tab" aria-selected="true">
+                            <i class="czi-cart mr-2 mt-n1"></i>Ya casi esta listo...
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-body tab-content py-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status" id="spinnerLoading">
+                            <span class="sr-only"></span>
+                        </div>
+                        <h4 class="h4" id="spanTexto"></h4>
+                        <br />
+                        <button class="btn btn-success btn-block btn-shadow" id="btnMiPedido" onclick="fn_Mipedido();" style="display:none;">Ver mis pedidos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container toast-top-center">
+    <div class="toast mb-3" id="cart-aviso" data-delay="4000" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-info text-white">
+            <i class="czi-check-circle mr-2"></i>
+            <h6 class="font-size-sm text-white mb-0 mr-auto">Información</h6>
+            <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">Falta completar los campos</div>
+    </div>
+</div>
+
+<!-- modal GPS
+<div class="modal fade" id="modalSmall" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#gps-tab" data-toggle="tab" role="tab" aria-selected="true">
+                            <i class="czi-unlocked mr-2 mt-n1"></i>Ya casi esta listo...
+                        </a>
+                    </li>
+                </ul>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body tab-content py-4">
+                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="gps-tab">
+                    <div class="form-group">
+                        <label for="si-email">Correo electrónico</label>
+                        <input class="form-control" type="email" id="si-email" placeholder="micorreo@ejemplo.com" required maxlength="75">
+                        <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                    </div>
+
+                    <div class="cz-gallery">
+                        <a href="link-to-google-map-embed" class="gallery-item rounded-lg"
+                           data-sub-html='<h6 class="font-size-sm text-light"></h6>'>
+                            <img src="path-to-thumbnail-image" alt="Gallery thumbnail">
+                            <span class="gallery-item-caption">Google map embed</span>
+                        </a>
+                    </div>
+
+                    <button class="btn btn-primary btn-block btn-shadow" id="btnInicio">Iniciar sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<input type="hidden" id="hddRegVenta" value="0" />
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            fn_GenerarMonto();
+            fn_GenerarCarritoHTML();
+        });
+    </script>
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/venta/pago.js"></script>
+}

@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "listado de productos";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+<style>
+    .dataTables_paginate {
+        float: right !important;
+    }
+</style>
+<!-- Page title-->
+<div class="border-bottom mt-lg-2 pt-5 pb-2 mb-3">
+    <h3 class="mt-lg-2 pl-lg-3 pt-lg-5 h3">Gestión de Productos</h3>
+</div>
+
+<!-- Validation: status tooltips-->
+<section class="pb-5 mb-md-2" id="forms-validation-tooltips">
+    <div class="card border-0 box-shadow">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrar">
+                        Nuevo Producto
+                    </button>
+                </div>
+                <div class="tab-pane fade show active" id="result" role="tabpanel">
+                    <div class="table-responsive">
+                        <table id="tblProducto" class="table" style="width:100%">
+                            <colgroup>
+                                <col width="25%" />
+                                <col width="25%" />
+                                <col width="25%" />
+                                <col width="13%" />
+                                <col width="12%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registrar modal-->
+<div class="modal fade" id="modalRegistrar" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo Producto</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @using (Html.BeginForm("RegistrarProducto", "producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label for="slcCategoriaA">Categoría del producto</label>
+                            <select class="form-control custom-select" name="slcCategoriaA" id="slcCategoriaA" required></select>
+                            <div class="invalid-tooltip">Selecciona una categoria.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            <label for="txNombreA">Nombre del producto</label>
+                            <input class="form-control" type="text" name="txNombreA" id="txNombreA" placeholder="Pollo a la brasa + papas" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="txPrecioA">Precio</label>
+                            <input class="form-control" type="text" name="txPrecioA" id="txPrecioA" placeholder="0.00" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="txDescripcionA">¿Qué contiene el producto?</label>
+                            <textarea class="form-control" name="txDescripcionA" id="txDescripcionA" rows="3" placeholder="Descripción del producto..." required></textarea>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label for="flImagen1">Imagen principal</label>
+                            <div class="cz-file-drop-area">
+                                <div class="cz-file-drop-icon czi-cloud-upload"></div>
+                                <span class="cz-file-drop-message">Arrastra y suelta la imagen</span>
+                                <input type="file" class="cz-file-drop-input" name="FRutaImagenes" id="flImagen1" accept="image/x-png,image/jpeg,image/jpg">
+                                <button type="button" class="cz-file-drop-btn btn btn-primary btn-sm">O selecciona una imagen...</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label for="flImagen2">Imagen 2</label>
+                            <div class="cz-file-drop-area">
+                                <div class="cz-file-drop-icon czi-cloud-upload"></div>
+                                <span class="cz-file-drop-message">Arrastra y suelta la imagen</span>
+                                <input type="file" class="cz-file-drop-input" name="FRutaImagenes" id="flImagen2" accept="image/x-png,image/jpeg,image/jpg">
+                                <button type="button" class="cz-file-drop-btn btn btn-primary btn-sm">O selecciona una imagen...</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label for="flImagen3">Imagen 3</label>
+                            <div class="cz-file-drop-area">
+                                <div class="cz-file-drop-icon czi-cloud-upload"></div>
+                                <span class="cz-file-drop-message">Arrastra y suelta la imagen</span>
+                                <input type="file" class="cz-file-drop-input" name="FRutaImagenes" id="flImagen3" accept="image/x-png,image/jpeg,image/jpg">
+                                <button type="button" class="cz-file-drop-btn btn btn-primary btn-sm">O selecciona una imagen...</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="wfechareg" id="wfechareg" value="">
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal" id="btnCerrar">Cerrar</button>
+
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardar" type="submit">Guardar</button>
+                </div>
+            }
+            <button class="btn btn-success btn-shadow btn-sm" id="btnValidar" onclick="fn_Validar()">Revisar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Editar modal -->
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Producto</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="slcCategoriaE">Categoría del producto</label>
+                        <select class="form-control custom-select" name="S" id="slcCategoriaE" required></select>
+                        <div class="invalid-tooltip">Selecciona una categoria.</div>
+                        <div class="valid-tooltip"></div>
+                    </div>
+                    <div class="col-md-5 form-group">
+                        <label for="txNombreE">Nombre del producto</label>
+                        <input class="form-control" type="text" name="txNombreE" id="txNombreE" placeholder="" value="" required>
+                        <div class="valid-tooltip"></div>
+                        <div class="invalid-tooltip">Campo requerido.</div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="txPrecioE">Precio</label>
+                        <input class="form-control" type="text" name="txPrecioE" id="txPrecioE" placeholder="0.00" value="" required>
+                        <div class="valid-tooltip"></div>
+                        <div class="invalid-tooltip">Campo requerido.</div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="txDescripcionE">¿Qué contiene el producto?</label>
+                        <textarea class="form-control" name="txDescripcionE" id="txDescripcionE" rows="3" placeholder="Descripción del producto..." required></textarea>
+                        <div class="valid-tooltip"></div>
+                        <div class="invalid-tooltip">Campo requerido.</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="" id="flImagen1E" class="img img-fluid pb-5" alt="Imagen 1">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="" id="flImagen2E" class="img img-fluid pb-5" alt="Imagen 2">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="" id="flImagen3E" class="img img-fluid pb-5" alt="Imagen 3">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="wfechaupdE" id="wfechaupdE" value="">
+            <input type="hidden" name="wproductoid" id="wproductoid" value="">
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal" id="btnCerrarEditar">Cerrar</button>
+                <button class="btn btn-success btn-shadow btn-sm" id="btnValidarEditar" onclick="fn_ValidarActualizar()">Revisar</button>
+                <button class="btn btn-success btn-shadow btn-sm" id="btnActualizar" type="submit" onclick="fn_Actualizar()">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="modalEliminarProducto" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idproductoEliminar="" id="hddproductoEliminar" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm3">
+                <div class="modal-body">
+                    <h5 class="h5">¿Desea eliminar el producto?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarEliminar">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarEliminar" onclick="fn_ConfimarEliminar()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Promocion -->
+<div class="modal fade" id="modalPromocionProducto" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idpromocionProducto="" id="hddpromocionProducto" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Activar promocion</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm4">
+                <div class="modal-body">
+                    <h5 class="h5">Por favor indique la fecha de promoción</h5>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="slcPromocionP">Promocion del producto</label>
+                            <select class="form-control custom-select" name="slcPromocionP" id="slcPromocionP" required>
+                                <option value="1">Activada</option>
+                                <option value="0">Desactivada</option>
+                            </select>
+                            <div class="invalid-tooltip">Selecciona una categoria.</div>
+                            <div class="valid-tooltip"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="txPrecioP">Precio de la promoción</label>
+                            <input class="form-control" type="text" name="txPrecioP" id="txPrecioP" placeholder="" value="" required>
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="txFechaIni">Fecha inicio de promoción</label>
+                            <input class="form-control" type="date" id="txFechaIni" value="2020-05-30">
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="txFechaFin">Fecha fin de promoción</label>
+                            <input class="form-control" type="date" id="txFechaFin" value="2020-05-30">
+                            <div class="valid-tooltip"></div>
+                            <div class="invalid-tooltip">Campo requerido.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal" id="btnCerrarPromocion">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" id="btnGuardarPromocion" onclick="fn_ConfimarPromocion()">Poner en promoción</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#frm3').submit(false);
+        $('#frm4').submit(false);
+    </script>
+    <script src="~/Content/js/moment.js"></script>
+    <script src="~/Content/src/producto/listado.js"></script>
+}
